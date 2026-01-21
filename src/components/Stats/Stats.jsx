@@ -2,7 +2,9 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver'
-import CircularText from '../shared/CircularText'
+import SpinningText from '../ui/spinning-text'
+import TextRevealCustom from '../ui/TextRevealCustom'
+import BrandMarquee from '../ui/BrandMarquee'
 
 const Stats = () => {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.3 })
@@ -27,7 +29,12 @@ const Stats = () => {
   ]
 
   const brandLogos = [
-    'Samsung', 'VOLTAS', 'SONY', 'dyson', 'Haier'
+    { name: 'Samsung', logo: '/src/assets/Brand_Logos/Samsung.png' },
+    { name: 'Voltas', logo: '/src/assets/Brand_Logos/Voltas_logo.png' },
+    { name: 'Sony', logo: '/src/assets/Brand_Logos/Sony.png' },
+    { name: 'Dyson', logo: '/src/assets/Brand_Logos/Dyson_logo.png' },
+    { name: 'Haier', logo: '/src/assets/Brand_Logos/Haier_logo.png' },
+    { name: 'Daikin', logo: '/src/assets/Brand_Logos/Daikin.png' }
   ]
 
   useEffect(() => {
@@ -63,97 +70,97 @@ const Stats = () => {
   }, [isIntersecting])
 
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+    <section className="bg-white relative overflow-hidden py-8">
       <div ref={ref} className="container-max">
         <div className="section-padding">
-        {/* Top Stats Row */}
-        <div ref={statsRef} className="flex font-grotesk text-official-text justify-center items-center gap-8 md:gap-16 lg:gap-24 mb-16 md:mb-20">
-          {topStats.map((stat, index) => (
+          {/* Top Stats Row */}
+          <div ref={statsRef} className="flex font-grotesk text-official-text justify-start items-center gap-6 mb-[52px]">
+            {topStats.map((stat, index) => (
+              <div key={stat.label} className="flex items-center gap-x-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  className="text-start"
+                >
+                  <div className="stat-number text-4xl font-bold mb-2 leading-140">
+                    {stat.prefix || ''}0{stat.suffix || ''}
+                  </div>
+                  <div className="text-sm md:text-base font-medium">
+                    {stat.label}
+                  </div>
+                </motion.div>
+
+                {/* Divider line - show after each stat except the last one */}
+                {index < topStats.length - 1 && (
+                  <motion.div
+                    initial={{ opacity: 0, scaleY: 0 }}
+                    animate={isIntersecting ? { opacity: 1, scaleY: 1 } : {}}
+                    transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
+                    className="h-11 border border-divider opacity-20"
+                    style={{ transform: 'rotate(-90deg)' }}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Main Content Section */}
+          <div className="flex items-center justify-between mb-8">
+            {/* Left Content */}
             <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="text-center"
+              initial={{ opacity: 0, x: -50 }}
+              animate={isIntersecting ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="stat-number text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
-                {stat.prefix || ''}0{stat.suffix || ''}
-              </div>
-              <div className="text-sm md:text-base font-medium">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Main Content Section */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16 md:mb-20">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isIntersecting ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-400 leading-relaxed mb-8">
-              totoko is a personalised appliance buying experience designed around your needs, not endless product listings. Instead of{' '}
-              <span className="text-gray-300">forcing you to compare dozens of options or guess if a deal is right, we help you choose confidently with expert assistance and better pricing.</span>
-            </h2>
-          </motion.div>
-
-          {/* Right Content - Circular Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isIntersecting ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex justify-center lg:justify-end"
-          >
-            <div className="relative w-48 h-48 md:w-56 md:h-56">
-              {/* Circular Text */}
-              <CircularText 
-                text="CHOOSE BETTER • PAY SMARTER • LIVE BETTER • "
-                onHover="speedUp"
-                spinDuration={20}
-                className="w-full h-full"
+              <TextRevealCustom
+                text="totoko is a personalised appliance buying experience designed around your needs, not endless product listings. Instead of leaving you to compare dozens of options or guess if a deal is right, we help you choose confidently with expert assistance and better pricing."
               />
+            </motion.div>
 
-              {/* Center Logo */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-[#BAAB96] text-[#2F5D50] w-[100px] h-[100px] flex items-center justify-center rounded-full">
-                  <span className="text-lg md:text-xl font-bold">totoko</span>
+            {/* Right Content - Circular Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isIntersecting ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex justify-center lg:justify-end"
+            >
+              <div className="relative w-48 h-48 md:w-52 md:h-52">
+                {/* Spinning Text */}
+                <SpinningText
+                  text="CHOOSE BETTER + PAY SMARTER + BUY WITH CONFIDENCE + EXPERT SUPPORT"
+                  duration={20}
+                  radius={80}
+                  separator=" + "
+                  separatorColor="#F97316"
+                  className="w-full h-full"
+                />
+
+                {/* Center Logo */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-[#BAAB96]/10 w-[100px] h-[100px] flex items-center justify-center rounded-full">
+                    <span className="text-2xl font-bold tracking-snug text-[#2F5D50]">totoko</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mb-[60px]"
+          >
+            <p className="text-sm font-magnetik font-medium leading-130 text-official-text w-[536px] h-[54px]">
+              Appliances are high-value decisions. Instead of pushing instant checkout, we slow down and give you time, choice, and expert guidance. Totoko is built for people who value peace of mind over impulse.
+            </p>
           </motion.div>
-        </div>
 
-        {/* Bottom Description */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mb-12 md:mb-16"
-        >
-          <p className="text-sm md:text-base text-gray-700 max-w-2xl leading-relaxed">
-            Appliances are high-value decisions. Instead of pushing instant checkout, we slow down and give you time, choice, and expert guidance. Totoko is built for people who value peace of mind over impulse.
-          </p>
-        </motion.div>
-
-        {/* Brand Logos */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16"
-        >
-          {brandLogos.map((brand, index) => (
-            <div
-              key={brand}
-              className="text-xl md:text-2xl lg:text-3xl font-light text-gray-300 hover:text-gray-500 transition-colors duration-300"
-            >
-              {brand}
-            </div>
-          ))}
-        </motion.div>
+          {/* Brand Logos */}
+          {/* Brand Logos Marquee */}
+          <BrandMarquee brands={brandLogos} />
         </div>
       </div>
     </section>

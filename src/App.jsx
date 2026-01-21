@@ -8,6 +8,7 @@ import Header from './components/shared/Header'
 import Hero from './components/Hero/Hero'
 import Stats from './components/Stats/Stats'
 import FeaturesGrid from './components/Features/FeaturesGrid'
+import BuyingAppliancesSection from './components/shared/BuyingAppliancesSection'
 import Timeline from './components/Timeline/Timeline'
 import TestimonialsCarousel from './components/Testimonials/TestimonialsCarousel'
 import ProcessSteps from './components/Process/ProcessSteps'
@@ -34,6 +35,7 @@ function App() {
             <Hero />
             <Stats />
             <FeaturesGrid />
+            <BuyingAppliancesSection />
             <Timeline />
             <TestimonialsCarousel />
             <ProcessSteps />

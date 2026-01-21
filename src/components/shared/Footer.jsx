@@ -28,11 +28,11 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-gray-900 text-white relative overflow-hidden">
+    <footer className="bg-[#0A0A0A] text-white relative overflow-hidden">
       <div className="container-max">
-        <div className="section-padding py-16 md:py-20">
+        {/* <div className="section-padding"> */}
         {/* Main Footer Content */}
-        <div className="grid lg:grid-cols-3 gap-12 lg:gap-16 mb-16">
+        <div className="grid lg:grid-cols-3 gap-12 lg:gap-16 mt-[52px]">
           {/* Newsletter Signup */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -41,7 +41,7 @@ const Footer = () => {
             viewport={{ once: true }}
             className="lg:col-span-1"
           >
-            <p className="text-gray-300 text-lg leading-relaxed mb-8">
+            <p className="text-white/60 w-[454px] h-[75px] font-magnetik text-lg leading-140 font-normal mb-6">
               Join Totoko as we build a calmer, smarter way to choose appliances one personalised decision, expert insight, and better deal at a time.
             </p>
 
@@ -151,49 +151,16 @@ const Footer = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          className="relative"
+          className="relative -bottom-48"
         >
-          <div className="flex items-center justify-center relative">
-            {/* Large totoko text */}
+          <div className="flex items-center justify-center">
             <h2 className="text-[370px] font-grotesk font-bold text-white tracking-snug">
               totoko
             </h2>
-            
-            {/* Circular element */}
-            {/* <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-8">
-              <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-teal-600 rounded-full flex items-center justify-center">
-                <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 border-2 border-white rounded-full flex items-center justify-center">
-                  <div className="w-2 h-2 md:w-3 md:h-3 bg-white rounded-full"></div>
-                </div>
-              </div>
-            </div> */}
+
           </div>
         </motion.div>
-        </div>
-      </div>
-
-      {/* Bottom Border */}
-      <div className="border-t border-gray-800">
-        <div className="container-max">
-          <div className="section-padding py-6">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-gray-400 text-sm">
-                © 2024 Totoko. All rights reserved.
-              </p>
-              <div className="flex gap-6">
-                <a href="#privacy" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
-                  Privacy
-                </a>
-                <a href="#terms" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
-                  Terms
-                </a>
-                <a href="#cookies" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
-                  Cookies
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* </div> */}
       </div>
     </footer>
   )

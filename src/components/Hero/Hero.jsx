@@ -21,7 +21,7 @@ const Hero = () => {
               A smarter way to buy appliances is here.
             </h1>
 
-            <p className="text-base text-official-text text-center max-w-[412px] mb-8 leading-130 w-full mx-auto">
+            <p className="text-base font-medium text-official-text text-center max-w-[412px] mb-8 leading-130 w-full mx-auto">
               Personalised recommendations, better deals, and personal assistance  all from home.
             </p>
 
@@ -29,9 +29,9 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gray-900 hover:bg-gray-800 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-300 shadow-lg text-lg"
+                className="hover:bg-gray-800 text-white font-bold font-magnetik transition-colors duration-300 text-sm leading-140 flex items-center justify-center gap-[10px] w-[172px] px-6 py-4 rounded-[8px] bg-[#2F5D50] shadow-green-pill"
               >
-                Get Started
+                GET STARTED
               </motion.button>
             </div>
           </motion.div>
@@ -93,25 +93,6 @@ const Hero = () => {
                 className="absolute bottom-20 left-1/4 w-3 h-3 bg-white/25 rounded-full blur-sm"
               />
             </div>
-          </motion.div>
-
-          {/* Scroll indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isIntersecting ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="flex flex-col items-center gap-2"
-            >
-              <span className="text-gray-600 text-sm font-medium">Scroll to explore</span>
-              <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </motion.div>
           </motion.div>
         </div>
       </div>

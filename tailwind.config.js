@@ -25,7 +25,12 @@ export default {
         snug: '-0.04em', // Equivalent to approximately -4% of the current font size
       },
       lineHeight: {
+        '120': '1.2',
         '130': '1.3', // Custom line height of 1.3
+        '140': '1.4',
+      },
+      boxShadow: {
+        'green-pill': 'inset 0 6px 7px rgba(255,255,255,0.25), 0 14px 20px rgba(47,93,80,0.4)',
       },
       colors: {
         border: "hsl(var(--border))",
@@ -76,6 +81,9 @@ export default {
         },
         official: {
           text: '#211A37',
+        },
+        divider: {
+          DEFAULT: '#BAAB96',
         }
       },
       borderRadius: {
