@@ -15,10 +15,8 @@ import Footer from './components/shared/Footer'
 import ScrollProgress from './components/shared/ScrollProgress'
 
 function App() {
-  // Initialize smooth scrolling
   useSmoothScroll()
   
-  // Initialize scroll-triggered animations
   useScrollAnimations()
 
   return (
