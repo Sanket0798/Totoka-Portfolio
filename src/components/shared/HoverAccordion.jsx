@@ -11,26 +11,26 @@ const HoverAccordion = () => {
       number: '01',
       title: 'Tell us about your requirement',
       description: 'Share what you need, what matters to you, or the product you already have in mind. It can be as detailed or as simple as you like.',
-      image: '/src/assets/accordion/step-1.png', // You'll need to add these images
+      image: '/accordion/step-1.png',
       buttonText: 'GET STARTED'
     },
     {
       number: '02',
       title: 'We personalise the options for you',
       description: 'Based on your requirements, we shortlist appliances that truly fit your usage, space, and preferences not just what\'s popular.',
-      image: '/src/assets/accordion/step-2.png'
+      image: '/accordion/step-2.png'
     },
     {
       number: '03',
       title: 'We negotiate the best deal for you',
       description: 'Our team speaks to sellers directly to secure the best possible price and availability for your chosen options.',
-      image: '/src/assets/accordion/step-3.png'
+      image: '/accordion/step-3.png'
     },
     {
       number: '04',
       title: 'A Totoko expert connects with you',
       description: 'We walk you through the recommendations, answer questions, and help you decide comfortably with no pressure.',
-      image: '/src/assets/accordion/step-4.png'
+      image: '/accordion/step-4.png'
     }
   ]
 

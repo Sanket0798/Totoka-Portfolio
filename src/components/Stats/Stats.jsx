@@ -29,12 +29,12 @@ const Stats = () => {
   ]
 
   const brandLogos = [
-    { name: 'Samsung', logo: '/src/assets/Brand_Logos/Samsung.png' },
-    { name: 'Voltas', logo: '/src/assets/Brand_Logos/Voltas_logo.png' },
-    { name: 'Sony', logo: '/src/assets/Brand_Logos/Sony.png' },
-    { name: 'Dyson', logo: '/src/assets/Brand_Logos/Dyson_logo.png' },
-    { name: 'Haier', logo: '/src/assets/Brand_Logos/Haier_logo.png' },
-    { name: 'Daikin', logo: '/src/assets/Brand_Logos/Daikin.png' }
+    { name: 'Samsung', logo: '/Brand_Logos/Samsung.png' },
+    { name: 'Voltas', logo: '/Brand_Logos/Voltas_logo.png' },
+    { name: 'Sony', logo: '/Brand_Logos/Sony.png' },
+    { name: 'Dyson', logo: '/Brand_Logos/Dyson_logo.png' },
+    { name: 'Haier', logo: '/Brand_Logos/Haier_logo.png' },
+    { name: 'Daikin', logo: '/Brand_Logos/Daikin.png' }
   ]
 
   useEffect(() => {

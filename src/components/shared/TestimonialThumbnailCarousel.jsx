@@ -10,7 +10,7 @@ const TestimonialThumbnailCarousel = () => {
     {
       id: 1,
       name: "SARAH JOHNSON",
-      image: "/src/assets/testimonials/sarah.jpg",
+      image: "/testimonials/sarah.jpg",
       testimonial: "Buying a washing machine felt like a maze of features I didn't understand. Totoko's expert explained everything in simple terms and helped me find one that fits my small apartment perfectly.",
       appliance: "Washing Machine",
       savings: "₹5,500"
@@ -18,7 +18,7 @@ const TestimonialThumbnailCarousel = () => {
     {
       id: 2,
       name: "RAJESH KUMAR",
-      image: "/src/assets/testimonials/rajesh.jpg",
+      image: "/testimonials/rajesh.jpg",
       testimonial: "I needed a refrigerator for my new home but was confused by all the options. The Totoko team took time to understand my family size and cooking habits.",
       appliance: "Refrigerator",
       savings: "₹12,000"
@@ -26,7 +26,7 @@ const TestimonialThumbnailCarousel = () => {
     {
       id: 3,
       name: "MEERA & VIKRAM",
-      image: "/src/assets/testimonials/meera-vikram.jpg",
+      image: "/testimonials/meera-vikram.jpg",
       testimonial: "I was overwhelmed with options for air conditioners. The Totoko expert understood my room size, budget, and usage patterns. They recommended the perfect AC and negotiated a deal that was ₹8,000 less than the online price. No regrets!",
       appliance: "Air Conditioner",
       savings: "₹8,000"
@@ -34,7 +34,7 @@ const TestimonialThumbnailCarousel = () => {
     {
       id: 4,
       name: "EMILY CHEN",
-      image: "/src/assets/testimonials/emily.jpg",
+      image: "/testimonials/emily.jpg",
       testimonial: "As a first-time homeowner, I was lost when it came to choosing kitchen appliances. Totoko's expert guided me through every decision, ensuring each appliance fit my cooking style.",
       appliance: "Kitchen Appliances",
       savings: "₹15,000"
@@ -42,7 +42,7 @@ const TestimonialThumbnailCarousel = () => {
     {
       id: 5,
       name: "DAVID WILSON",
-      image: "/src/assets/testimonials/david.jpg",
+      image: "/testimonials/david.jpg",
       testimonial: "I was skeptical about personalized appliance buying, but Totoko proved me wrong. Their expert understood my specific needs and found appliances I never would have considered.",
       appliance: "Home Appliances",
       savings: "₹9,500"
@@ -50,7 +50,7 @@ const TestimonialThumbnailCarousel = () => {
     {
       id: 6,
       name: "PRIYA SHARMA",
-      image: "/src/assets/testimonials/priya.jpg",
+      image: "/testimonials/priya.jpg",
       testimonial: "Moving to a new city meant setting up everything from scratch. Totoko's team helped me choose the right appliances for my lifestyle and budget.",
       appliance: "Complete Setup",
       savings: "₹18,000"

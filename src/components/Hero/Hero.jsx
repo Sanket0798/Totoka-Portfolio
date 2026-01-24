@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver'
-import appliancesImage from '../../assets/123456789.png'
 
 const Hero = () => {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.3 })
@@ -46,7 +45,7 @@ const Hero = () => {
             <div className="relative">
               {/* Main appliances image */}
               <img
-                src={appliancesImage}
+                src="/123456789.png"
                 alt="Collection of modern home appliances including TV, refrigerator, washing machine, microwave, air conditioner, and air purifier"
                 className="w-full h-auto object-contain drop-shadow-2xl"
               />

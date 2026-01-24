@@ -12,7 +12,7 @@ const TimelineCarousel = () => {
       title: "BORN OF TOTOKO",
       heading: "Totoko didn't begin as an appliance marketplace.",
       description: "Totoko didn't begin as an appliance marketplace. It began by protecting appliances. While working as an appliance insurance provider, we saw the same problem repeat itself: appliances failed not because they were faulty, but because they were wrong choices to begin with. Too big, too small. Overused. Underpowered. Poorly matched to the home.",
-      image: "/src/assets/TimeLine/1.png",
+      image: "/TimeLine/1.png",
       isActive: true
     },
     {
@@ -20,35 +20,35 @@ const TimelineCarousel = () => {
       title: "UNDERSTANDING THE PROBLEM",
       heading: "We realized the real issue wasn't the appliances.",
       description: "Through thousands of insurance claims, we discovered that most appliance failures weren't due to manufacturing defects. They were due to poor purchasing decisions. People were buying appliances that didn't match their actual needs, usage patterns, or home specifications.",
-      image: "/src/assets/TimeLine/2.png"
+      image: "/TimeLine/2.png"
     },
     {
       year: 2018,
       title: "THE SOLUTION EMERGES",
       heading: "What if we helped people choose better from the start?",
       description: "Instead of just insuring appliances after purchase, we decided to help people make better choices before buying. We began developing a personalized consultation service that would match appliances to actual needs, not just popular trends.",
-      image: "/src/assets/TimeLine/3.png"
+      image: "/TimeLine/3.png"
     },
     {
       year: 2020,
       title: "BUILDING THE PLATFORM",
       heading: "Creating a new way to buy appliances.",
       description: "We built a platform that combines expert consultation with personalized recommendations. No endless product listings, no pressure sales. Just honest guidance to help people find appliances that truly fit their lives.",
-      image: "/src/assets/TimeLine/4.png"
+      image: "/TimeLine/4.png"
     },
     {
       year: 2022,
       title: "LAUNCH AND GROWTH",
       heading: "Helping thousands make confident choices.",
       description: "Totoko officially launched as a personalized appliance buying service. We've helped thousands of customers find the right appliances with confidence, backed by expert guidance and better deals negotiated on their behalf.",
-      image: "/src/assets/TimeLine/5.png"
+      image: "/TimeLine/5.png"
     },
     {
       year: 2025,
       title: "THE FUTURE",
       heading: "Expanding our mission of thoughtful purchasing.",
       description: "Today, Totoko continues to grow, helping more people make thoughtful appliance decisions. We're expanding our services while staying true to our core mission: helping people choose better, not just buy faster.",
-      image: "/src/assets/TimeLine/6.png"
+      image: "/TimeLine/6.png"
     }
   ]
 
@@ -157,6 +157,9 @@ const TimelineCarousel = () => {
                     src={timelineData[currentSlide].image}
                     alt={`Timeline ${timelineData[currentSlide].year}`}
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.src = '/placeholder.svg'
+                    }}
                   />
 
                   {/* Large Year Overlay */}

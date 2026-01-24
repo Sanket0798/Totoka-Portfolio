@@ -79,7 +79,7 @@ export const preloadCriticalResources = () => {
   const criticalResources = [
     '/src/assets/fonts/Magnetik-Medium.woff2',
     '/src/assets/fonts/Magnetik-Bold.woff2',
-    '/src/assets/123456789.png'
+    '/123456789.png'
   ]
 
   criticalResources.forEach(resource => {

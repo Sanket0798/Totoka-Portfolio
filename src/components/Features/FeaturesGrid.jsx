@@ -8,19 +8,19 @@ const FeaturesGrid = () => {
     {
       title: 'Personalised Recommendations',
       description: 'We understand your requirements and shortlist appliances that actually fit, no unnecessary options.',
-      image: '/src/assets/FeatureGrid/Frame_1.png',
+      image: "/FeatureGrid/Frame_1.png",
       alt: 'Woman cooking in modern kitchen'
     },
     {
       title: 'Expert-Assisted Decisions',
       description: 'A Totoko expert reviews the options with you, answers questions, and helps you decide comfortably.',
-      image: '/src/assets/FeatureGrid/Frame_2.png',
+      image: "/FeatureGrid/Frame_2.png",
       alt: 'Expert consultation'
     },
     {
       title: 'Better Deals, Negotiated For You',
       description: 'We negotiate directly with sellers so you don\'t have to, you only proceed if it makes sense.',
-      image: '/src/assets/FeatureGrid/Frame_3.png',
+      image: "/FeatureGrid/Frame_3.png",
       alt: 'Handshake deal',
       hasButton: true
     }
@@ -46,6 +46,9 @@ const FeaturesGrid = () => {
                     src={feature.image}
                     alt={feature.alt}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      e.target.src = '/placeholder.svg'
+                    }}
                   />
                 </div>
 
