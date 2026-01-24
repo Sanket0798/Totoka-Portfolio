@@ -10,7 +10,7 @@ const TimelineCarousel = () => {
     {
       year: 2011,
       title: "BORN OF TOTOKO",
-      heading: "Totoko didn't begin as an appliance marketplace.",
+      heading: "Totoko didn't begin as an marketplace.",
       description: "Totoko didn't begin as an appliance marketplace. It began by protecting appliances. While working as an appliance insurance provider, we saw the same problem repeat itself: appliances failed not because they were faulty, but because they were wrong choices to begin with. Too big, too small. Overused. Underpowered. Poorly matched to the home.",
       image: "/TimeLine/1.png",
       isActive: true
