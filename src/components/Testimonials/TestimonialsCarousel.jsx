@@ -111,7 +111,7 @@ const TestimonialsCarousel = () => {
                     animate={{
                       opacity: isCenter ? 1 : isAdjacent ? 0.7 : 0.4,
                       scale: isCenter ? 1 : isAdjacent ? 0.85 : 0.7,
-                      x: position * (isCenter ? 0 : isAdjacent ? 280 : 400),
+                      x: position * (isCenter ? 0 : isAdjacent ? 380 : 300),
                       zIndex: isCenter ? 10 : isAdjacent ? 5 : 1
                     }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}

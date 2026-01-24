@@ -12,7 +12,7 @@ const TimelineCarousel = () => {
       title: "BORN OF TOTOKO",
       heading: "Totoko didn't begin as an marketplace.",
       description: "Totoko didn't begin as an appliance marketplace. It began by protecting appliances. While working as an appliance insurance provider, we saw the same problem repeat itself: appliances failed not because they were faulty, but because they were wrong choices to begin with. Too big, too small. Overused. Underpowered. Poorly matched to the home.",
-      image: "/TimeLine/1.png",
+      image: "/TimeLine/4.png",
       isActive: true
     },
     {
@@ -34,7 +34,7 @@ const TimelineCarousel = () => {
       title: "BUILDING THE PLATFORM",
       heading: "Creating a new way to buy appliances.",
       description: "We built a platform that combines expert consultation with personalized recommendations. No endless product listings, no pressure sales. Just honest guidance to help people find appliances that truly fit their lives.",
-      image: "/TimeLine/4.png"
+      image: "/TimeLine/1.png"
     },
     {
       year: 2022,
@@ -77,7 +77,7 @@ const TimelineCarousel = () => {
           >
             {/* Bottom border line */}
             <div className="absolute bottom-0 left-0 right-0 h-px bg-[#BAAB96]" />
-            
+
             <div className="flex items-center justify-end relative pb-2">
               {timelineData.map((item, index) => (
                 <div key={item.year} className="flex items-center">

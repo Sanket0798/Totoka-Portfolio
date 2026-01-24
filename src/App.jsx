@@ -56,7 +56,7 @@ function App() {
             
             <TimelineCarousel />
             {/* <Timeline /> */}
-            {/* <TestimonialsCarousel /> */}
+            <TestimonialsCarousel />
             <TestimonialThumbnailCarousel />
           </main>
 

@@ -5,16 +5,29 @@ const Hero = () => {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.3 })
 
   return (
-    <section className="min-h-screen relative overflow-hidden bg-gradient-to-b from-amber-100 via-orange-200 to-white">
-      <div ref={ref} className="container-max">
+    <section className="relative overflow-hidden">
+      {/* Background Image */}
+      <div className="relative w-full">
+        <img
+          src="/Hero_Banner.png"
+          alt="Hero Banner"
+          className="w-full h-auto object-contain"
+        />
+        
+        {/* Bottom fade overlay */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none"></div>
+        
+        {/* Content Overlay */}
+        <div className="absolute inset-0 flex items-start justify-center pt-20">
+          <div ref={ref} className="container-max relative z-10">
         {/* Hero Content */}
-        <div className="flex flex-col items-center justify-center min-h-screen py-20 section-padding">
+        <div className="flex flex-col items-center justify-start pt-8 section-padding">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16 max-w-4xl"
+            className="text-center max-w-4xl"
           >
             <h1 className="text-[56px] font-bold text-official-text tracking-snug leading-none mb-4 max-w-[790px] w-full font-grotesk">
               A smarter way to buy appliances is here.
@@ -34,65 +47,8 @@ const Hero = () => {
               </motion.button>
             </div>
           </motion.div>
-
-          {/* Appliances Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 100, scale: 0.9 }}
-            animate={isIntersecting ? { opacity: 1, y: 0, scale: 1 } : {}}
-            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            className="relative w-full max-w-5xl"
-          >
-            <div className="relative">
-              {/* Main appliances image */}
-              <img
-                src="/123456789.png"
-                alt="Collection of modern home appliances including TV, refrigerator, washing machine, microwave, air conditioner, and air purifier"
-                className="w-full h-auto object-contain drop-shadow-2xl"
-              />
-
-              {/* Floating elements for visual enhancement */}
-              <motion.div
-                animate={{
-                  y: [0, -10, 0],
-                  rotate: [0, 2, 0]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="absolute top-10 left-10 w-4 h-4 bg-white/30 rounded-full blur-sm"
-              />
-
-              <motion.div
-                animate={{
-                  y: [0, -15, 0],
-                  rotate: [0, -3, 0]
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1
-                }}
-                className="absolute top-20 right-20 w-6 h-6 bg-white/20 rounded-full blur-sm"
-              />
-
-              <motion.div
-                animate={{
-                  y: [0, -8, 0],
-                  rotate: [0, 1, 0]
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 2
-                }}
-                className="absolute bottom-20 left-1/4 w-3 h-3 bg-white/25 rounded-full blur-sm"
-              />
-            </div>
-          </motion.div>
+        </div>
+      </div>
         </div>
       </div>
 
