@@ -155,7 +155,7 @@ const Footer = () => {
         className="relative overflow-visible"
       >
         <div className="relative">
-          <h2 className="text-[370px] font-magnetik font-bold text-white tracking-tight leading-none absolute left-52" style={{ width: '1122px', transform: 'translateY(80px)' }}>
+          <h2 className="text-[370px] font-magnetik font-bold text-white tracking-tight leading-none absolute md:left-52" style={{ width: '1122px', transform: 'translateY(80px)' }}>
             totoko
           </h2>
         </div>

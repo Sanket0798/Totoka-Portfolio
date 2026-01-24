@@ -1,80 +1,100 @@
-import { useEffect, useRef } from "react";
+import { motion } from "motion/react";
 
-export default function SpinningText({
-  text,
+import { cn } from "../../lib/utils"
+
+const BASE_TRANSITION = {
+  repeat: Infinity,
+  ease: "linear",
+}
+
+const BASE_ITEM_VARIANTS = {
+  hidden: {
+    opacity: 1,
+  },
+  visible: {
+    opacity: 1,
+  },
+}
+
+export function SpinningText({
+  children,
   duration = 10,
-  className = "",
   reverse = false,
-  radius = 100,
-  separator = " • ",
-  separatorColor = "#F97316", // orange-500
+  radius = 5,
+  transition,
+  variants,
+  className,
+  style
 }) {
-  const textRef = useRef(null);
+  if (typeof children !== "string" && !Array.isArray(children)) {
+    throw new Error("children must be a string or an array of strings")
+  }
 
-  useEffect(() => {
-    const textElement = textRef.current;
-    if (!textElement) return;
+  if (Array.isArray(children)) {
+    // Validate all elements are strings
+    if (!children.every((child) => typeof child === "string")) {
+      throw new Error("all elements in children array must be strings")
+    }
+    children = children.join("")
+  }
 
-    const textContent = text || textElement.textContent;
-    textElement.innerHTML = "";
+  const letters = children.split("")
+  letters.push(" ")
 
-    // Split text by separator and add separators back
-    const segments = textContent.split(separator);
-    const fullText = segments.join(separator);
-    
-    // Split into individual characters
-    const characters = fullText.split("");
-    
-    characters.forEach((char, index) => {
-      const span = document.createElement("span");
-      span.textContent = char;
-      span.style.position = "absolute";
-      span.style.left = "50%";
-      span.style.top = "50%";
-      span.style.transformOrigin = `0 ${radius}px`;
-      span.style.fontSize = "14px";
-      span.style.fontWeight = "600";
-      span.style.letterSpacing = "0.5px";
-      
-      // Check if character is a separator (• or +)
-      if (char === "•" || char === "+") {
-        span.style.color = separatorColor;
-        span.style.fontSize = "16px";
-        span.style.fontWeight = "700";
-      } else {
-        span.style.color = "#000000";
-      }
-      
-      const angle = (360 / characters.length) * index;
-      span.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateY(-${radius}px) rotate(${reverse ? -angle : 0}deg)`;
-      
-      textElement.appendChild(span);
-    });
+  const finalTransition = {
+    ...BASE_TRANSITION,
+    ...transition,
+    duration: (transition)?.duration ?? duration,
+  }
 
-    // Apply rotation animation to container
-    const keyframes = reverse
-      ? [{ transform: "rotate(360deg)" }, { transform: "rotate(0deg)" }]
-      : [{ transform: "rotate(0deg)" }, { transform: "rotate(360deg)" }];
+  const containerVariants = {
+    visible: { rotate: reverse ? -360 : 360 },
+    ...variants?.container,
+  }
 
-    textElement.animate(keyframes, {
-      duration: duration * 1000,
-      iterations: Infinity,
-      easing: "linear",
-    });
-  }, [text, duration, reverse, radius, separator, separatorColor]);
+  const itemVariants = {
+    ...BASE_ITEM_VARIANTS,
+    ...variants?.item,
+  }
 
   return (
-    <div
-      className={`relative inline-flex items-center justify-center ${className}`}
+    <motion.div
+      className={cn("relative", className)}
       style={{
-        width: `${radius * 2}px`,
-        height: `${radius * 2}px`,
+        ...style,
       }}
-    >
-      <div
-        ref={textRef}
-        className="absolute inset-0"
-      />
-    </div>
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      transition={finalTransition}>
+      {letters.map((letter, index) => (
+        <motion.span
+          aria-hidden="true"
+          key={`${index}-${letter}`}
+          variants={itemVariants}
+          className="absolute top-1/2 left-1/2 inline-block"
+          style={
+            {
+              "--index": index,
+              "--total": letters.length,
+              "--radius": radius,
+
+              transform: `
+                  translate(-50%, -50%)
+                  rotate(calc(360deg / var(--total) * var(--index)))
+                  translateY(calc(var(--radius, 5) * -1ch))
+                `,
+
+              transformOrigin: "center"
+            }
+          }>
+          {letter}
+        </motion.span>
+      ))}
+      <span className="sr-only">{children}</span>
+    </motion.div>
   );
 }
+
+// Default export
+export default SpinningText;

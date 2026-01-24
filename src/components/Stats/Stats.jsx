@@ -125,21 +125,20 @@ const Stats = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex justify-center lg:justify-end"
             >
-              <div className="relative w-48 h-48 md:w-52 md:h-52">
+              <div className="relative sm:hidden md:block md:w-[152px] md:h-[152px]">
                 {/* Spinning Text */}
                 <SpinningText
-                  text="CHOOSE BETTER + PAY SMARTER + BUY WITH CONFIDENCE + EXPERT SUPPORT"
                   duration={20}
-                  radius={80}
-                  separator=" + "
-                  separatorColor="#F97316"
-                  className="w-full h-full"
-                />
+                  radius={8}
+                  className="w-full h-full text-sm font-medium text-gray-800"
+                >
+                  CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT
+                </SpinningText>
 
                 {/* Center Logo */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-[#BAAB96]/10 w-[100px] h-[100px] flex items-center justify-center rounded-full">
-                    <span className="text-2xl font-bold tracking-snug text-[#2F5D50]">totoko</span>
+                  <div className="bg-[#BAAB96]/10 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full">
+                    <span className="text-sm md:text-base font-bold tracking-snug text-[#2F5D50]">totoko</span>
                   </div>
                 </div>
               </div>
