@@ -16,7 +16,6 @@ export const measurePerformance = () => {
         totalResources: performance.getEntriesByType('resource').length,
       }
 
-      // Log in development only
       if (import.meta.env.DEV) {
         console.group('Performance Metrics')
         console.log('DOM Content Loaded:', `${metrics.domContentLoaded.toFixed(2)}ms`)

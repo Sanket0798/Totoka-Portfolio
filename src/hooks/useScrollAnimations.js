@@ -2,17 +2,13 @@ import { useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
 
 export const useScrollAnimations = () => {
   useEffect(() => {
-    // Refresh ScrollTrigger on mount
     ScrollTrigger.refresh()
 
-    // Global scroll animations
     const initGlobalAnimations = () => {
-      // Fade in up animation for elements with data-animate="fade-up"
       gsap.utils.toArray('[data-animate="fade-up"]').forEach((element) => {
         gsap.fromTo(element, 
           {
@@ -34,7 +30,6 @@ export const useScrollAnimations = () => {
         )
       })
 
-      // Stagger animation for elements with data-animate="stagger"
       gsap.utils.toArray('[data-animate="stagger"]').forEach((container) => {
         const children = container.children
         gsap.fromTo(children,
@@ -58,7 +53,6 @@ export const useScrollAnimations = () => {
         )
       })
 
-      // Scale animation for elements with data-animate="scale"
       gsap.utils.toArray('[data-animate="scale"]').forEach((element) => {
         gsap.fromTo(element,
           {
@@ -80,7 +74,6 @@ export const useScrollAnimations = () => {
         )
       })
 
-      // Parallax effect for elements with data-animate="parallax"
       gsap.utils.toArray('[data-animate="parallax"]').forEach((element) => {
         gsap.to(element, {
           yPercent: -50,
@@ -95,10 +88,8 @@ export const useScrollAnimations = () => {
       })
     }
 
-    // Initialize animations after a short delay to ensure DOM is ready
     const timer = setTimeout(initGlobalAnimations, 100)
 
-    // Cleanup
     return () => {
       clearTimeout(timer)
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())

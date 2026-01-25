@@ -33,7 +33,6 @@ export const Navbar = ({
   return (
     <motion.div
       ref={ref}
-      // Changed to fixed positioning for proper header behavior
       className={cn("fixed inset-x-0 top-0 z-50 w-full", className)}>
       {React.Children.map(children, (child) =>
         React.isValidElement(child)

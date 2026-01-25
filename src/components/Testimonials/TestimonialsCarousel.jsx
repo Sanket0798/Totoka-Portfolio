@@ -1,17 +1,19 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver'
+import { useContactForm } from '../../contexts/ContactFormContext'
 
 const TestimonialsCarousel = () => {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.3 })
   const [currentSlide, setCurrentSlide] = useState(0)
+  const { openPopup } = useContactForm()
 
   const testimonials = [
     {
       id: 1,
       names: 'MEERA & VIKRAM',
       date: '1/08',
-      image: '/api/placeholder/400/300',
+      image: '/testimonials/1.jpeg',
       testimonial: "I was overwhelmed with options for air conditioners. The Totoko expert understood my room size, budget, and usage patterns. They recommended the perfect AC and negotiated a deal that was ₹8,000 less than the online price. No regrets!",
       bgColor: 'bg-gray-100'
     },
@@ -19,7 +21,7 @@ const TestimonialsCarousel = () => {
       id: 2,
       names: 'PRIYA SHARMA',
       date: '15/07',
-      image: '/api/placeholder/400/300',
+      image: '/testimonials/2.jpg',
       testimonial: "Buying a washing machine seemed daunting with so many brands and features. Totoko's expert helped me understand what I actually needed for my family of four. The personalized recommendation was spot-on, and I saved ₹12,000!",
       bgColor: 'bg-green-100'
     },
@@ -27,7 +29,7 @@ const TestimonialsCarousel = () => {
       id: 3,
       names: 'RAJESH KUMAR',
       date: '22/06',
-      image: '/api/placeholder/400/300',
+      image: '/testimonials/3.png',
       testimonial: "The refrigerator buying process was made so simple. Instead of comparing dozens of models online, the Totoko expert understood my kitchen space and food habits. Got the perfect fridge with a better warranty deal.",
       bgColor: 'bg-blue-100'
     },
@@ -35,7 +37,7 @@ const TestimonialsCarousel = () => {
       id: 4,
       names: 'ANITA & SURESH',
       date: '8/06',
-      image: '/api/placeholder/400/300',
+      image: '/testimonials/4.jpg',
       testimonial: "We needed a complete kitchen setup - microwave, dishwasher, and chimney. Totoko coordinated everything, ensured compatibility, and negotiated bundle pricing. Saved us weeks of research and thousands of rupees.",
       bgColor: 'bg-purple-100'
     },
@@ -43,7 +45,7 @@ const TestimonialsCarousel = () => {
       id: 5,
       names: 'DAVID WILSON',
       date: '30/05',
-      image: '/api/placeholder/400/300',
+      image: '/testimonials/5.jpg',
       testimonial: "As someone who's not tech-savvy, I was confused about smart home appliances. The Totoko expert explained everything in simple terms and helped me choose appliances that actually work together seamlessly.",
       bgColor: 'bg-orange-100'
     }
@@ -70,10 +72,9 @@ const TestimonialsCarousel = () => {
   }
 
   return (
-    <section className="py-[104px] bg-white relative overflow-hidden">
+    <section className="pt-[56px] pb-[104px] bg-white relative overflow-hidden">
       <div ref={ref} className="container-max">
         <div className="section-padding">
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
@@ -88,14 +89,15 @@ const TestimonialsCarousel = () => {
             </p>
           </motion.div>
 
-          {/* Testimonials Carousel */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative mb-16 md:mb-20"
+            className="relative mb-16 md:mb-[40px]"
           >
             <div className="flex items-center justify-center relative h-96 md:h-[500px]">
+              <div className="absolute z-5 w-80 md:w-[546px] h-full bg-[#BAAB96]/20"></div>
+
               {getVisibleTestimonials().map((testimonial) => {
                 const { position } = testimonial
                 const isCenter = position === 0
@@ -111,35 +113,67 @@ const TestimonialsCarousel = () => {
                     animate={{
                       opacity: isCenter ? 1 : isAdjacent ? 0.7 : 0.4,
                       scale: isCenter ? 1 : isAdjacent ? 0.85 : 0.7,
-                      x: position * (isCenter ? 0 : isAdjacent ? 380 : 300),
+                      x: position * (isCenter ? 0 : isAdjacent ? 410 : 380),
+                      // y: isCenter ? -20 : -40, // Move side cards up to align with center
                       zIndex: isCenter ? 10 : isAdjacent ? 5 : 1
                     }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className={`absolute w-80 md:w-96 ${testimonial.bgColor} rounded-2xl p-6 md:p-8 shadow-lg`}
+                    className={`absolute w-80 md:w-[400px] space-y-8 ${isCenter ? 'bg-transparent' : testimonial.bgColor}  ${isCenter ? '' : 'shadow-lg'}`}
                   >
-                    {/* Header */}
-                    <div className="flex justify-between items-center mb-6">
-                      <h3 className="font-semibold text-gray-900 text-sm md:text-base tracking-wide">
-                        {testimonial.names}
-                      </h3>
-                      <span className="text-gray-600 text-sm">
-                        {testimonial.date}
-                      </span>
-                    </div>
+                    {/* Header - Only show on center card */}
+                    {isCenter && (
+                      <div className="flex justify-between items-center text-official-text">
+                        <motion.h3
+                          key={`${testimonial.id}-name`}
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: 0.1 }}
+                          className="font-grotesk font-bold text-base leading-none tracking-snug uppercase"
+                        >
+                          {testimonial.names}
+                        </motion.h3>
+                        <motion.span
+                          key={`${testimonial.id}-date`}
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: 0.2 }}
+                          className="font-grotesk text-official-text text-sm leading-none tracking-snug font-medium"
+                        >
+                          {testimonial.date}
+                        </motion.span>
+                      </div>
+                    )}
 
                     {/* Image */}
-                    <div className="mb-6">
+                    <motion.div
+                      key={`${testimonial.id}-image`}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      className=""
+                    >
                       <img
                         src={testimonial.image}
                         alt={testimonial.names}
-                        className="w-full h-48 md:h-56 object-cover rounded-lg"
+                        className="w-full h-48 md:h-56 object-cover"
+                        onError={(e) => {
+                          e.target.src = '/placeholder.svg'
+                        }}
                       />
-                    </div>
+                    </motion.div>
 
-                    {/* Testimonial Text */}
-                    <p className="text-gray-700 text-sm md:text-base leading-relaxed">
-                      {testimonial.testimonial}
-                    </p>
+                    {/* Testimonial Text - Only show on center card */}
+                    {isCenter && (
+                      <motion.p
+                        key={`${testimonial.id}-text`}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="font-magnetik font-medium text-[15px] text-official-text leading-140 tracking-normal"
+                      >
+                        {testimonial.testimonial}
+                      </motion.p>
+                    )}
                   </motion.div>
                 )
               })}
@@ -148,24 +182,26 @@ const TestimonialsCarousel = () => {
             {/* Navigation Arrows */}
             <button
               onClick={prevSlide}
-              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-200 z-20"
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-white flex items-center justify-center transition-all duration-300 z-20"
             >
-              <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="#211A37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
+
             </button>
 
             <button
               onClick={nextSlide}
-              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-200 z-20"
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-white flex items-center justify-center transition-all duration-300 z-20"
             >
-              <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="#211A37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
+
             </button>
 
             {/* Slide Indicators */}
-            <div className="flex justify-center gap-2 mt-8">
+            {/* <div className="flex justify-center gap-2 mt-8">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
@@ -174,7 +210,7 @@ const TestimonialsCarousel = () => {
                     }`}
                 />
               ))}
-            </div>
+            </div> */}
           </motion.div>
 
           {/* CTA Section */}
@@ -188,15 +224,16 @@ const TestimonialsCarousel = () => {
               Ready to begin? Share your requirement and let expert guidance bring clarity.
             </p>
 
-           <div className='flex items-center justify-center'>
-             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="hover:bg-gray-800 text-white font-bold font-magnetik transition-colors duration-300 text-sm leading-140 flex items-center justify-center gap-[10px] max-w-[192px] px-6 py-4 rounded-[8px] bg-[#2F5D50] shadow-green-pill"
-            >
-              GET STARTED
-            </motion.button>
-           </div>
+            <div className='flex items-center justify-center'>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => openPopup()}
+                className="hover:bg-gray-800 text-white font-bold font-magnetik transition-colors duration-300 text-sm leading-140 flex items-center justify-center gap-[10px] max-w-[192px] px-6 py-4 rounded-[8px] bg-[#2F5D50] shadow-green-pill"
+              >
+                GET STARTED
+              </motion.button>
+            </div>
           </motion.div>
         </div>
       </div>

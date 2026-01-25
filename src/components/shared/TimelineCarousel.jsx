@@ -178,7 +178,7 @@ const TimelineCarousel = () => {
               className="absolute left-[992px] top-[375px] transform -translate-y-1/2 w-[52px] h-[52px] bg-white hover:bg-white flex items-center justify-center transition-all duration-300"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 18L9 12L15 6" stroke="#211A37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M15 18L9 12L15 6" stroke="#211A37" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
 
             </button>
@@ -188,7 +188,7 @@ const TimelineCarousel = () => {
               className="absolute right-0 top-[375px] transform -translate-y-1/2 w-[52px] h-[52px] bg-white hover:bg-white flex items-center justify-center transition-all duration-300"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 18L15 12L9 6" stroke="#211A37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M9 18L15 12L9 6" stroke="#211A37" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
 
             </button>

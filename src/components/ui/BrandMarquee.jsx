@@ -12,13 +12,10 @@ const BrandMarquee = ({ brands, className = "" }) => {
       transition={{ duration: 0.8, delay: 1 }}
       className={`relative overflow-hidden ${className}`}
     >
-      {/* Left fade gradient */}
       <div className="absolute left-0 top-0 z-10 h-full w-16 md:w-20 bg-gradient-to-r from-white to-transparent pointer-events-none" />
       
-      {/* Right fade gradient */}
       <div className="absolute right-0 top-0 z-10 h-full w-16 md:w-20 bg-gradient-to-l from-white to-transparent pointer-events-none" />
       
-      {/* Marquee content */}
       <div className="flex">
         <motion.div
           className="flex shrink-0 items-center gap-12 md:gap-16 lg:gap-20 py-4"
@@ -34,7 +31,6 @@ const BrandMarquee = ({ brands, className = "" }) => {
             },
           }}
         >
-          {/* First set of brands */}
           {brands.map((brand, index) => (
             <div
               key={`first-${brand.name}-${index}`}
@@ -48,7 +44,6 @@ const BrandMarquee = ({ brands, className = "" }) => {
             </div>
           ))}
           
-          {/* Duplicate set for seamless loop */}
           {brands.map((brand, index) => (
             <div
               key={`second-${brand.name}-${index}`}

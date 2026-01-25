@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver'
+import { useContactForm } from '../../contexts/ContactFormContext'
 import SpinningText from '../ui/spinning-text'
 
 const HoverAccordion = () => {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.3 })
   const [hoveredIndex, setHoveredIndex] = useState(0) // Default to first item expanded
+  const { openPopup } = useContactForm()
 
   const accordionItems = [
     {
@@ -164,6 +166,7 @@ const HoverAccordion = () => {
                       <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
+                        onClick={() => openPopup()}
                         className="hover:bg-gray-800 text-white font-bold font-magnetik transition-colors duration-300 text-sm leading-140 flex items-center justify-center gap-[10px] w-[172px] px-6 py-4 rounded-[8px] bg-[#2F5D50] shadow-green-pill"
                       >
                         {item.buttonText}

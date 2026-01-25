@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion'
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver'
+import { useContactForm } from '../../contexts/ContactFormContext'
 
 const Hero = () => {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.3 })
+  const { openPopup } = useContactForm()
 
   return (
     <section className="relative overflow-hidden">
@@ -41,6 +43,7 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => openPopup()}
                 className="hover:bg-gray-800 text-white font-bold font-magnetik transition-colors duration-300 text-sm leading-140 flex items-center justify-center gap-[10px] w-[172px] px-6 py-4 rounded-[8px] bg-[#2F5D50] shadow-green-pill"
               >
                 GET STARTED

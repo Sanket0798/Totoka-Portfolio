@@ -82,7 +82,7 @@ const Footer = () => {
                 <input
                   type="checkbox"
                   id="privacy-consent"
-                  className="w-[31px] h-[31px] text-gray-600 bg-black border-black focus:ring-black flex-shrink-0"
+                  className="w-[31px] h-[31px] rounded border-2 border-gray-400 focus:ring-0 focus:ring-offset-0 flex-shrink-0 checkbox-black"
                   required
                 />
                 <label htmlFor="privacy-consent" className="text-sm text-white/60 leading-140 font-magnetik font-normal">
@@ -110,7 +110,7 @@ const Footer = () => {
                     <li key={link.name}>
                       <a
                         href={link.href}
-                        className="text-white hover:text-gray-300 transition-colors duration-200 text-lg font-magnetik font-medium mb-[18px] uppercase leading-140"
+                        className="text-white hover:text-gray-300 transition-colors duration-200 text-base font-magnetik font-medium mb-[18px] uppercase leading-140"
                       >
                         {link.name}
                       </a>
@@ -134,7 +134,7 @@ const Footer = () => {
                     <li key={social.name}>
                       <a
                         href={social.href}
-                        className="text-white hover:text-gray-300 transition-colors duration-200 text-lg font-magnetik font-medium mb-[18px] uppercase leading-140"
+                        className="text-white hover:text-gray-300 transition-colors duration-200 text-base font-magnetik font-medium mb-[18px] uppercase leading-140"
                       >
                         {social.name}
                       </a>

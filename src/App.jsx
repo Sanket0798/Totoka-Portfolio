@@ -1,6 +1,7 @@
 import { AnimatePresence } from 'framer-motion'
 import { useSmoothScroll } from './hooks/useSmoothScroll'
 import { useScrollAnimations } from './hooks/useScrollAnimations'
+import { ContactFormProvider, useContactForm } from './contexts/ContactFormContext'
 
 // Components
 import ErrorBoundary from './components/shared/ErrorBoundary'
@@ -9,18 +10,19 @@ import Hero from './components/Hero/Hero'
 import Stats from './components/Stats/Stats'
 import FeaturesGrid from './components/Features/FeaturesGrid'
 import BuyingAppliancesSection from './components/shared/BuyingAppliancesSection'
-import Timeline from './components/Timeline/Timeline'
 import TestimonialsCarousel from './components/Testimonials/TestimonialsCarousel'
-import TestimonialThumbnailCarousel from './components/shared/TestimonialThumbnailCarousel'
 import TimelineCarousel from './components/shared/TimelineCarousel'
 import HoverAccordion from './components/shared/HoverAccordion'
 import Footer from './components/shared/Footer'
 import ScrollProgress from './components/shared/ScrollProgress'
 import TextRevealCustom from './components/ui/TextRevealCustom'
+import ContactFormPopup from './components/shared/ContactFormPopup'
+import WhatsAppButton from './components/shared/WhatsAppButton'
 
-function App() {
+const AppContent = () => {
+  const { isPopupOpen, closePopup } = useContactForm()
+  
   useSmoothScroll()
-
   useScrollAnimations()
 
   return (
@@ -35,11 +37,19 @@ function App() {
 
           {/* Main content */}
           <main>
-            <Hero />
-            <Stats />
-            <FeaturesGrid />
+            <section id="home">
+              <Hero />
+            </section>
+            <section id="about">
+              <Stats />
+            </section>
+            <section id="features">
+              <FeaturesGrid />
+            </section>
             <BuyingAppliancesSection />
-            <HoverAccordion />
+            <section id="process">
+              <HoverAccordion />
+            </section>
             
             {/* Text Reveal Section */}
             <section className="bg-white py-12">
@@ -54,17 +64,33 @@ function App() {
               </div>
             </section>
             
-            <TimelineCarousel />
-            {/* <Timeline /> */}
-            <TestimonialsCarousel />
-            <TestimonialThumbnailCarousel />
+            <section id="journey">
+              <TimelineCarousel />
+            </section>
+            <section id="testimonials">
+              <TestimonialsCarousel />
+            </section>
           </main>
 
           {/* Footer */}
           <Footer />
+
+          {/* Global Contact Form Popup */}
+          <ContactFormPopup isOpen={isPopupOpen} onClose={closePopup} />
+
+          {/* WhatsApp Button */}
+          <WhatsAppButton />
         </div>
       </AnimatePresence>
     </ErrorBoundary>
+  )
+}
+
+function App() {
+  return (
+    <ContactFormProvider>
+      <AppContent />
+    </ContactFormProvider>
   )
 }
 

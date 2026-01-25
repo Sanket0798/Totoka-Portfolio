@@ -3,7 +3,6 @@ import Lenis from 'lenis'
 
 export const useSmoothScroll = () => {
   useEffect(() => {
-    // Initialize Lenis smooth scroll
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -16,7 +15,6 @@ export const useSmoothScroll = () => {
       infinite: false,
     })
 
-    // Animation frame loop
     function raf(time) {
       lenis.raf(time)
       requestAnimationFrame(raf)
@@ -24,7 +22,6 @@ export const useSmoothScroll = () => {
 
     requestAnimationFrame(raf)
 
-    // Cleanup
     return () => {
       lenis.destroy()
     }

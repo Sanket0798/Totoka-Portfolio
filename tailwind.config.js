@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
   content: [
@@ -22,15 +21,16 @@ export default {
     },
     extend: {
       letterSpacing: {
-        snug: '-0.04em', // Equivalent to approximately -4% of the current font size
+        snug: '-0.04em',
       },
       lineHeight: {
         '120': '1.2',
-        '130': '1.3', // Custom line height of 1.3
+        '130': '1.3',
         '140': '1.4',
       },
       boxShadow: {
         'green-pill': 'inset 0 6px 7px rgba(255,255,255,0.25), 0 14px 20px rgba(47,93,80,0.4)',
+        'grid-pill': 'inset 0 6px 7px rgba(255,255,255,0.25)',
       },
       colors: {
         border: "hsl(var(--border))",
