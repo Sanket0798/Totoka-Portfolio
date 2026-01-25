@@ -52,7 +52,7 @@ const AppContent = () => {
             </section>
             
             {/* Text Reveal Section */}
-            <section className="bg-white py-12">
+            <section className="bg-white pt-[80px] pb-[40px] px-6 md:px-0 md:py-12">
               <div className="container-max">
                 <div className="section-padding">
                   <div className="flex justify-center">

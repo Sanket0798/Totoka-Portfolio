@@ -71,17 +71,25 @@ const TestimonialsCarousel = () => {
     return visible
   }
 
+  const handleCardClick = (testimonial) => {
+    // Find the original index of the clicked testimonial
+    const targetIndex = testimonials.findIndex(t => t.id === testimonial.id)
+    if (targetIndex !== -1) {
+      setCurrentSlide(targetIndex)
+    }
+  }
+
   return (
-    <section className="pt-[56px] pb-[104px] bg-white relative overflow-hidden">
+    <section className="pt-[56px] pb-16 md:pb-[104px] bg-white relative overflow-hidden">
       <div ref={ref} className="container-max">
         <div className="section-padding">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center md:mb-12 text-official-text flex flex-col items-center"
+            className="text-center mb-[40px] md:mb-12 text-official-text flex flex-col items-center px-6 md:px-0"
           >
-            <h2 className="text-[56px] leading-none font-bold tracking-snug font-grotesk w-full text-center mb-6">
+            <h2 className="text-[40px] md:text-[56px] leading-none font-bold tracking-snug font-grotesk w-full text-center mb-4 md:mb-6">
               Hear from our customers
             </h2>
             <p className="text-sm font-medium font-magnetik max-w-[440px] text-center mx-auto">
@@ -93,10 +101,10 @@ const TestimonialsCarousel = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative mb-16 md:mb-[40px]"
+            className="relative mb-8 md:mb-[40px] px-6 md:px-0"
           >
-            <div className="flex items-center justify-center relative h-96 md:h-[500px]">
-              <div className="absolute z-5 w-80 md:w-[546px] h-full bg-[#BAAB96]/20"></div>
+            <div className="flex items-center justify-center relative min-h-[411px] h-full md:min-h-[500px] md:h-full">
+              <div className="absolute z-5 max-w-[354px] w-full md:max-w-[546px] md:w-full h-full bg-[#BAAB96]/20"></div>
 
               {getVisibleTestimonials().map((testimonial) => {
                 const { position } = testimonial
@@ -114,11 +122,16 @@ const TestimonialsCarousel = () => {
                       opacity: isCenter ? 1 : isAdjacent ? 0.7 : 0.4,
                       scale: isCenter ? 1 : isAdjacent ? 0.85 : 0.7,
                       x: position * (isCenter ? 0 : isAdjacent ? 410 : 380),
-                      // y: isCenter ? -20 : -40, // Move side cards up to align with center
                       zIndex: isCenter ? 10 : isAdjacent ? 5 : 1
                     }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className={`absolute w-80 md:w-[400px] space-y-8 ${isCenter ? 'bg-transparent' : testimonial.bgColor}  ${isCenter ? '' : 'shadow-lg'}`}
+                    whileHover={!isCenter ? {
+                      scale: isAdjacent ? 0.9 : 0.75,
+                      opacity: isAdjacent ? 0.8 : 0.5,
+                      transition: { duration: 0.2 }
+                    } : {}}
+                    onClick={() => !isCenter && handleCardClick(testimonial)}
+                    className={`absolute max-w-[260px] w-full md:max-w-[400px] md:w-full space-y-4 md:space-y-8 ${isCenter ? 'bg-transparent' : testimonial.bgColor} ${isCenter ? '' : 'shadow-lg'} ${!isCenter ? 'cursor-pointer' : ''}`}
                   >
                     {/* Header - Only show on center card */}
                     {isCenter && (
@@ -169,7 +182,7 @@ const TestimonialsCarousel = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}
-                        className="font-magnetik font-medium text-[15px] text-official-text leading-140 tracking-normal"
+                        className="font-magnetik font-medium text-[15px] text-official-text leading-130 md:leading-140 tracking-normal"
                       >
                         {testimonial.testimonial}
                       </motion.p>
@@ -218,13 +231,13 @@ const TestimonialsCarousel = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center space-y-6"
+            className="text-center space-y-6 max-w-[354px] w-full md:max-w-[450px] md:w-full mx-auto"
           >
-            <p className="max-w-[450px] leading-140 font-magnetik text-official-text font-medium text-2xl text-center mx-auto">
+            <p className="leading-140 font-magnetik text-official-text font-medium text-base md:text-2xl text-center">
               Ready to begin? Share your requirement and let expert guidance bring clarity.
             </p>
 
-            <div className='flex items-center justify-center'>
+            <div className='hidden md:flex items-center justify-center'>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

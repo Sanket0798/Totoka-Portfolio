@@ -6,14 +6,14 @@ const TextRevealCustom = ({ text, className = "" }) => {
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start 0.9", "start 0.25"]
+    offset: ["start 0.8", "start 0.2"]
   });
 
   const words = text.split(" ");
 
   return (
     <div ref={targetRef} className={`relative ${className}`}>
-      <h2 className="font-grotesk font-bold text-[32px] leading-120 tracking-snug w-[760px] h-[228px] flex flex-wrap">
+      <h2 className="font-grotesk font-bold text-2xl md:text-[32px] leading-120 tracking-snug max-w-[760px] w-full min-h-[180px] md:min-h-[228px] flex flex-wrap">
         {words.map((word, i) => {
           const start = i / words.length;
           const end = start + 1 / words.length;
@@ -29,7 +29,7 @@ const TextRevealCustom = ({ text, className = "" }) => {
 };
 
 const Word = ({ children, progress, range }) => {
-  const opacity = useTransform(progress, range, [0.3, 1]);
+  const opacity = useTransform(progress, range, [0.2, 1]);
 
   return (
     <span className="relative mr-2 mb-1">

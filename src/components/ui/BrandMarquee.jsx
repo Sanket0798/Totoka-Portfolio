@@ -18,7 +18,7 @@ const BrandMarquee = ({ brands, className = "" }) => {
       
       <div className="flex">
         <motion.div
-          className="flex shrink-0 items-center gap-12 md:gap-16 lg:gap-20 py-4"
+          className="flex shrink-0 items-center gap-12 md:gap-16 lg:gap-20 py-0 md:py-4"
           animate={{
             x: ["0%", "-50%"]
           }}

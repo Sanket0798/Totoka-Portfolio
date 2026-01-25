@@ -10,20 +10,32 @@ const Hero = () => {
     <section className="relative overflow-hidden">
       {/* Background Image */}
       <div className="relative w-full">
+        {/* Desktop Hero Banner - Hidden on mobile */}
         <img
           src="/Hero_Banner.png"
-          alt="Hero Banner"
-          className="w-full h-auto object-contain"
+          alt="Hero Banner Desktop"
+          className="hidden md:block w-full h-auto object-contain"
         />
         
-        {/* Bottom fade overlay */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none"></div>
+        {/* Mobile Hero Banner - Only visible on mobile */}
+        <img
+          src="/Mobile_Hero-Banner.png"
+          alt="Hero Banner Mobile"
+          className="block md:hidden w-full h-auto object-contain"
+        />
+        
+        {/* Bottom fade overlay - Different for mobile and desktop */}
+        {/* Desktop fade overlay */}
+        <div className="hidden md:block absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none"></div>
+        
+        {/* Mobile fade overlay - Adjusted for mobile banner */}
+        <div className="block md:hidden absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white via-white/70 to-transparent pointer-events-none"></div>
         
         {/* Content Overlay */}
-        <div className="absolute inset-0 flex items-start justify-center pt-20">
+        <div className="absolute inset-0 flex items-start justify-center pt-12 md:pt-20">
           <div ref={ref} className="container-max relative z-10">
         {/* Hero Content */}
-        <div className="flex flex-col items-center justify-start pt-8 section-padding">
+        <div className="flex flex-col items-center justify-start pt-[176px] md:pt-8 section-padding px-6 md:px-0">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -31,15 +43,15 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl"
           >
-            <h1 className="text-[56px] font-bold text-official-text tracking-snug leading-none mb-4 max-w-[790px] w-full font-grotesk">
+            <h1 className="text-4xl md:text-[56px] font-bold text-official-text tracking-snug leading-none mb-4 max-w-[790px] w-full font-grotesk">
               A smarter way to buy appliances is here.
             </h1>
 
-            <p className="text-base font-medium text-official-text text-center max-w-[412px] mb-8 leading-130 w-full mx-auto">
+            <p className="text-sm md:text-base font-medium text-official-text text-center max-w-[412px] mb-8 leading-130 w-full mx-auto px-4 md:px-0">
               Personalised recommendations, better deals, and personal assistance  all from home.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex sm:flex-row gap-4 justify-center">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

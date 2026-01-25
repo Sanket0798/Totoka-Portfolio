@@ -70,23 +70,48 @@ const Stats = () => {
   }, [isIntersecting])
 
   return (
-    <section className="bg-white relative overflow-hidden py-8">
+    <section className="bg-white relative overflow-hidden py-8 px-6 md:px-0">
       <div ref={ref} className="container-max">
         <div className="section-padding">
           {/* Top Stats Row */}
-          <div ref={statsRef} className="flex font-grotesk text-official-text justify-start items-center gap-6 mb-[52px]">
+          <div ref={statsRef} className="flex font-grotesk text-official-text justify-start items-center gap-6 mb-[72px] md:mb-[52px]">
             {topStats.map((stat, index) => (
               <div key={stat.label} className="flex items-center gap-x-6">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
-                  className="text-start"
+                  className="text-start relative"
                 >
-                  <div className="stat-number text-4xl font-bold mb-2 leading-140">
+                  {/* Add leaf decorations only for Google Reviews (first stat) on mobile */}
+                  {index === 0 && (
+                    <>
+                      {/* Left Leaf - Mobile only */}
+                      <motion.img
+                        src="/Left_Leaf.svg"
+                        alt="Left Leaf Decoration"
+                        className="absolute left-0 -top-1 transform -translate-y-1/2 w-[28px] h-[49px] block md:hidden"
+                        initial={{ opacity: 0, x: -10, rotate: -10 }}
+                        animate={isIntersecting ? { opacity: 1, x: 0, rotate: 0 } : {}}
+                        transition={{ duration: 1.0, delay: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                      />
+
+                      {/* Right Leaf - Mobile only */}
+                      <motion.img
+                        src="/Right_Leaf.svg"
+                        alt="Right Leaf Decoration"
+                        className="absolute right-0 -top-1 transform -translate-y-1/2 w-[28px] h-[49px] block md:hidden"
+                        initial={{ opacity: 0, x: 10, rotate: 10 }}
+                        animate={isIntersecting ? { opacity: 1, x: 0, rotate: 0 } : {}}
+                        transition={{ duration: 1.0, delay: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                      />
+                    </>
+                  )}
+
+                  <div className="stat-number text-2xl md:text-4xl text-center md:text-start font-bold mb-0 md:mb-2 leading-140">
                     {stat.prefix || ''}0{stat.suffix || ''}
                   </div>
-                  <div className="text-sm md:text-base font-medium">
+                  <div className="text-xs md:text-base font-medium">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -106,7 +131,7 @@ const Stats = () => {
           </div>
 
           {/* Main Content Section */}
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-[40px] md:mb-8">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -123,9 +148,9 @@ const Stats = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isIntersecting ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex justify-center lg:justify-end"
+              className="hidden md:flex justify-center lg:justify-end"
             >
-              <div className="relative sm:hidden md:block md:w-[152px] md:h-[152px]">
+              <div className="relative md:w-[152px] md:h-[152px]">
                 {/* Spinning Text */}
                 <SpinningText
                   duration={20}
@@ -150,9 +175,9 @@ const Stats = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="mb-[60px]"
+            className="mb-14 md:mb-[60px]"
           >
-            <p className="text-sm font-magnetik font-medium leading-130 text-official-text w-[536px] h-[54px]">
+            <p className="text-sm font-magnetik font-medium leading-130 text-official-text max-w-[536px] w-full min-h-[54px]">
               Appliances are high-value decisions. Instead of pushing instant checkout, we slow down and give you time, choice, and expert guidance. Totoko is built for people who value peace of mind over impulse.
             </p>
           </motion.div>

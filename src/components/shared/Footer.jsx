@@ -27,39 +27,36 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-[#0A0A0A] text-white relative overflow-hidden">
+    <footer className="bg-[#0A0A0A] text-white relative overflow-hidden px-6 md:px-0">
       <div className="container-max">
-        <div className="section-padding pt-[52px] pb-[22px]">
-          <div className="flex flex-wrap lg:flex-nowrap justify-between items-start gap-12 lg:gap-16">
+        <div className="section-padding pt-16 md:pt-[52px] pb-[22px]">
+          <div className="flex flex-col md:flex-row lg:flex-nowrap justify-between items-start gap-12 lg:gap-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="flex-shrink-0"
-              style={{ width: '524px' }}
+              className="flex flex-col md:flex-shrink-0 w-full md:w-[524px]"
             >
-              <p className="text-white/60 font-magnetik text-lg leading-140 font-normal mb-6" style={{ width: '524px' }}>
+              <p className="text-white/60 font-magnetik text-base md:text-lg leading-140 font-normal mb-6 w-full md:w-[524px]">
                 Join Totoko as we build a calmer, smarter way to choose appliances one personalised decision, expert insight, and better deal at a time.
               </p>
 
-              <form onSubmit={handleSubmit} className="mb-6" style={{ width: '524px' }}>
+              <form onSubmit={handleSubmit} className="mb-6 w-full md:w-[524px]">
                 <div className="flex">
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="ENTER YOUR EMAIL ADDRESS"
-                    className="bg-white/10 border border-gray-700 rounded-l-lg px-5 py-6 text-white placeholder-gray-400 focus:outline-none focus:border-gray-600 transition-colors duration-200 text-sm font-medium placeholder:font-magnetik placeholder:font-medium placeholder:leading-140 placeholder:text-sm placeholder:uppercase placeholder:text-white"
-                    style={{ width: '450px' }}
+                    className="bg-white/10 border border-gray-700 rounded-l-lg px-5 py-6 text-white placeholder-gray-400 focus:outline-none focus:border-gray-600 transition-colors duration-200 text-sm font-medium placeholder:font-magnetik placeholder:font-medium placeholder:leading-140 placeholder:text-sm placeholder:uppercase placeholder:text-white w-full md:w-[450px]"
                     required
                   />
                   <motion.button
                     type="submit"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-[#BAAB96] hover:bg-[#A89B88] px-6 py-3 rounded-r-xl transition-colors duration-200 flex items-center justify-center flex-shrink-0"
-                    style={{ width: '74px' }}
+                    className="bg-[#BAAB96] hover:bg-[#A89B88] px-6 py-3 rounded-r-xl transition-colors duration-200 flex items-center justify-center flex-shrink-0 w-[74px]"
                   >
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -78,7 +75,7 @@ const Footer = () => {
                 </motion.p>
               )}
 
-              <div className="flex items-center justify-start gap-3" style={{ width: '524px' }}>
+              <div className="flex items-center justify-start gap-3 w-full md:w-[524px]">
                 <input
                   type="checkbox"
                   id="privacy-consent"
@@ -155,11 +152,11 @@ const Footer = () => {
         className="relative overflow-visible"
       >
         <div className="relative">
-          <h2 className="text-[370px] font-magnetik font-bold text-white tracking-tight leading-none absolute md:left-52" style={{ width: '1122px', transform: 'translateY(80px)' }}>
+          <h2 className="text-[126px] md:text-[370px] font-magnetik font-bold text-white tracking-tight leading-none absolute -top-7 md:top-0 md:left-52" style={{ width: '1122px', transform: 'translateY(80px)' }}>
             totoko
           </h2>
         </div>
-        <div style={{ height: '370px' }}></div>
+        <div className="h-[150px] md:h-[370px]"></div>
       </motion.div>
     </footer>
   )

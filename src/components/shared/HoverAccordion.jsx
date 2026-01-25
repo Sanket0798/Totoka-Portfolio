@@ -43,11 +43,94 @@ const HoverAccordion = () => {
   return (
     <div className="bg-[#EDE9E3] my-8" style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)' }}>
       <div ref={ref} className="w-full h-full">
+        {/* Mobile Layout */}
+        <div className="md:hidden px-6 py-12">
+          {/* Mobile Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="mb-8"
+          >
+            <div className="flex items-end justify-between mb-[55px]">
+              <div className="flex-1">
+                <h2 className="text-4xl font-grotesk font-bold leading-none tracking-snug text-official-text mb-4">
+                  How can we help you
+                </h2>
+                <p className="text-sm leading-140 font-medium font-magnetik text-official-text tracking-normal">
+                  From understanding your needs to helping you decide, Totoko offers a calm, personalised experience with expert support throughout.
+                </p>
+              </div>
+
+              {/* Mobile Spinning Badge */}
+              <div className="flex-shrink-0 ml-4">
+                <div className="relative w-[80px] h-[80px]">
+                  <SpinningText
+                    duration={20}
+                    radius={6}
+                    className="w-full h-full text-xs font-medium text-black"
+                  >
+                    CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT
+                  </SpinningText>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-[#BAAB96]/10 w-12 h-12 flex items-center justify-center rounded-full">
+                      <span className="text-xs font-bold tracking-snug text-[#2F5D50]">totoko</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Mobile Cards */}
+          <div className="space-y-8">
+            {accordionItems.map((item, index) => (
+              <motion.div
+                key={item.number}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="relative border-t border-[#BAB996]/20 pt-8"
+              >
+                <div className="flex justify-between items-end">
+                  {/* Left Content */}
+                  <div className="">
+                    <div className="font-grotesk font-medium text-sm leading-none tracking-snug text-official-text/60 mb-2">
+                      {item.number}
+                    </div>
+
+                    <h3 className="font-grotesk font-bold text-2xl leading-tight tracking-snug text-official-text mb-4 max-w-[200px]">
+                      {item.title}
+                    </h3>
+
+                    <p className="font-magnetik font-medium text-sm leading-140 tracking-snug text-official-text/60 max-w-[240px]">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  {/* Right Image */}
+                  <div className="flex-shrink-0 relative">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-[116px] h-[116px] object-cover rounded-xl"
+                      onError={(e) => {
+                        e.target.src = '/placeholder.svg'
+                      }}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Layout - Unchanged */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="flex h-[600px] w-full"
+          className="hidden md:flex h-[600px] w-full"
         >
           {/* Left Static Banner */}
           <div className="w-[400px] p-12 flex flex-col justify-between items-start flex-shrink-0">
@@ -103,8 +186,8 @@ const HoverAccordion = () => {
                   flex: hoveredIndex === index ? '2' : '0.5',
                 }}
                 transition={{
-                  duration: 0.8,
-                  ease: [0.25, 0.46, 0.45, 0.94],
+                  duration: 1.2,
+                  ease: [0.23, 1, 0.32, 1], // Custom cubic-bezier for smooth drawer effect
                 }}
               >
                 {/* Content */}
@@ -115,7 +198,11 @@ const HoverAccordion = () => {
                     animate={{
                       opacity: hoveredIndex === index ? 1 : 0.7,
                     }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    transition={{
+                      duration: 0.6,
+                      ease: "easeOut",
+                      delay: hoveredIndex === index ? 0.2 : 0
+                    }}
                   >
                     {item.number}
                   </motion.div>
@@ -126,26 +213,45 @@ const HoverAccordion = () => {
                     animate={{
                       fontSize: hoveredIndex === index ? '32px' : '18px',
                     }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.23, 1, 0.32, 1],
+                      delay: hoveredIndex === index ? 0.1 : 0
+                    }}
                   >
                     {item.title}
                   </motion.h3>
 
                   {/* Expanded Content */}
                   <motion.div
-                    className="flex-1 flex flex-col justify-between"
+                    className="flex-1 flex flex-col justify-between overflow-hidden"
+                    initial={{ opacity: 0, x: -30, scale: 0.95 }}
                     animate={{
                       opacity: hoveredIndex === index ? 1 : 0,
-                      x: hoveredIndex === index ? 0 : -20,
+                      x: hoveredIndex === index ? 0 : -30,
+                      scale: hoveredIndex === index ? 1 : 0.95,
                     }}
                     transition={{
-                      duration: 0.5,
-                      delay: hoveredIndex === index ? 0.3 : 0,
-                      ease: [0.25, 0.46, 0.45, 0.94]
+                      duration: 0.8,
+                      delay: hoveredIndex === index ? 0.4 : 0,
+                      ease: [0.23, 1, 0.32, 1]
                     }}
                   >
                     {/* Illustration */}
-                    <div className="flex-1 flex items-end justify-start mb-6">
+                    <motion.div
+                      className="flex-1 flex items-end justify-start mb-6"
+                      initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                      animate={{
+                        opacity: hoveredIndex === index ? 1 : 0,
+                        y: hoveredIndex === index ? 0 : 20,
+                        scale: hoveredIndex === index ? 1 : 0.9,
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        delay: hoveredIndex === index ? 0.6 : 0,
+                        ease: [0.23, 1, 0.32, 1]
+                      }}
+                    >
                       <img
                         src={item.image}
                         alt={item.title}
@@ -154,17 +260,43 @@ const HoverAccordion = () => {
                           e.target.src = '/placeholder.svg'
                         }}
                       />
-                    </div>
+                    </motion.div>
 
                     {/* Description */}
-                    <p className="font-magnetik font-medium text-sm leading-140 tracking-snug max-w-[316px] w-full mb-9">
+                    <motion.p
+                      className="font-magnetik font-medium text-sm leading-140 tracking-snug max-w-[316px] w-full mb-9"
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{
+                        opacity: hoveredIndex === index ? 1 : 0,
+                        y: hoveredIndex === index ? 0 : 15,
+                      }}
+                      transition={{
+                        duration: 0.5,
+                        delay: hoveredIndex === index ? 0.7 : 0,
+                        ease: [0.23, 1, 0.32, 1]
+                      }}
+                    >
                       {item.description}
-                    </p>
+                    </motion.p>
 
                     {/* Button (for all items) */}
                     {item.buttonText && (
                       <motion.button
-                        whileHover={{ scale: 1.02 }}
+                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                        animate={{
+                          opacity: hoveredIndex === index ? 1 : 0,
+                          y: hoveredIndex === index ? 0 : 20,
+                          scale: hoveredIndex === index ? 1 : 0.9,
+                        }}
+                        transition={{
+                          duration: 0.5,
+                          delay: hoveredIndex === index ? 0.8 : 0,
+                          ease: [0.23, 1, 0.32, 1]
+                        }}
+                        whileHover={{
+                          scale: 1.02,
+                          transition: { duration: 0.2 }
+                        }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => openPopup()}
                         className="hover:bg-gray-800 text-white font-bold font-magnetik transition-colors duration-300 text-sm leading-140 flex items-center justify-center gap-[10px] w-[172px] px-6 py-4 rounded-[8px] bg-[#2F5D50] shadow-green-pill"
