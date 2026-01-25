@@ -195,4 +195,26 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
   }
+
+  /* Ensure modal scrollbars are hidden on desktop */
+  @media (min-width: 768px) {
+    .modal-scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    
+    .modal-scrollbar-hide::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      background: transparent !important;
+    }
+    
+    .modal-scrollbar-hide::-webkit-scrollbar-track {
+      display: none !important;
+    }
+    
+    .modal-scrollbar-hide::-webkit-scrollbar-thumb {
+      display: none !important;
+    }
+  }
 }

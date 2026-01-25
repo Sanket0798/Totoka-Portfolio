@@ -23,7 +23,7 @@ const Header = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
+      element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
@@ -33,16 +33,16 @@ const Header = () => {
   // Handle navigation clicks
   const handleNavClick = (e, link, hasDropdown = false) => {
     e.preventDefault();
-    
+
     if (hasDropdown) return; // Don't scroll for dropdown items
-    
+
     if (link === '#contact') {
       openPopup();
     } else {
       const sectionId = link.replace('#', '');
       scrollToSection(sectionId);
     }
-    
+
     // Close mobile menu if open
     setIsMobileMenuOpen(false);
   };
@@ -105,10 +105,10 @@ const Header = () => {
               >
                 <button className="relative text-gray-700 hover:text-gray-900 hover:bg-gray-100/25 transition-all duration-200 font-magnetik-medium px-3 py-2 rounded-lg flex items-center">
                   <span className="block">{item.name}</span>
-                  <motion.svg 
-                    className="inline-block w-4 h-4 ml-1" 
-                    fill="none" 
-                    stroke="currentColor" 
+                  <motion.svg
+                    className="inline-block w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                     animate={{ rotate: isCategoriesOpen ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
@@ -194,71 +194,91 @@ const Header = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             />
           </MobileNavHeader>
-
-          <MobileNavMenu
-            isOpen={isMobileMenuOpen}
-            onClose={() => setIsMobileMenuOpen(false)}
-          >
-            {allNavItems.map((item, idx) => (
-              <div key={`mobile-link-${idx}`}>
-                {item.hasDropdown ? (
-                  // Categories with submenu in mobile
-                  <div>
-                    <button
-                      onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
-                      className="relative text-neutral-600 dark:text-neutral-300 hover:text-primary-600 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-200 font-magnetik-medium flex items-center justify-between w-full px-3 py-2 rounded-lg"
-                    >
-                      <span className="block">{item.name}</span>
-                      <motion.svg 
-                        className="w-4 h-4 ml-2" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                        animate={{ rotate: isCategoriesOpen ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </motion.svg>
-                    </button>
-                    
-                    <AnimatePresence>
-                      {isCategoriesOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="ml-4 mt-1 space-y-1"
-                        >
-                          {categoryItems.map((category, categoryIdx) => (
-                            <a
-                              key={`mobile-category-${categoryIdx}`}
-                              href={category.link}
-                              onClick={() => setIsMobileMenuOpen(false)}
-                              className="block px-3 py-2 text-sm font-magnetik text-neutral-500 hover:text-primary-600 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors duration-150 rounded-lg"
-                            >
-                              {category.name}
-                            </a>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  // Regular nav item
-                  <a
-                    href={item.link}
-                    onClick={(e) => handleNavClick(e, item.link)}
-                    className="relative text-neutral-600 dark:text-neutral-300 hover:text-primary-600 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-200 font-magnetik-medium flex items-center px-3 py-2 rounded-lg"
-                  >
-                    <span className="block">{item.name}</span>
-                  </a>
-                )}
-              </div>
-            ))}
-          </MobileNavMenu>
         </MobileNav>
       </Navbar>
+
+      {/* Mobile Menu Overlay - Rendered outside of MobileNav to avoid scroll animations */}
+      <AnimatePresence>
+        <MobileNavMenu
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+        >
+          {/* Main navigation items */}
+          {allNavItems.map((item, idx) => (
+            <div key={`mobile-link-${idx}`}>
+              {item.hasDropdown ? (
+                // Categories with submenu in mobile
+                <div>
+                  <button
+                    onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
+                    className="text-2xl font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors w-full text-left"
+                  >
+                    {item.name}
+                  </button>
+
+                  <AnimatePresence>
+                    {isCategoriesOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="ml-4 mt-4 space-y-3"
+                      >
+                        {categoryItems.map((category, categoryIdx) => (
+                          <a
+                            key={`mobile-category-${categoryIdx}`}
+                            href={category.link}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="block text-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                          >
+                            {category.name}
+                          </a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                // Regular nav item
+                <a
+                  href={item.link}
+                  onClick={(e) => handleNavClick(e, item.link)}
+                  className="text-2xl font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors block"
+                >
+                  {item.name}
+                </a>
+              )}
+            </div>
+          ))}
+
+          {/* Support section */}
+          <div className="mt-12">
+            <h3 className="text-sm font-medium text-official-text/50 dark:text-gray-500 uppercase tracking-wider mb-5">
+              SUPPORT
+            </h3>
+            <div className="space-y-4">
+              <button
+                onClick={() => {
+                  openPopup();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="text-lg font-medium text-official-text dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors block underline"
+              >
+                Fill The Form
+              </button>
+              <a
+                href="https://wa.me/919876543210?text=Hi!%20I'm%20interested%20in%20your%20appliance%20buying%20service.%20Can%20you%20help%20me?"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-medium text-official-text dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors block underline"
+              >
+                Connect with us through Whatsapp
+              </a>
+            </div>
+          </div>
+        </MobileNavMenu>
+      </AnimatePresence>
     </div>
   );
 };

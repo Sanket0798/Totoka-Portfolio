@@ -80,7 +80,7 @@ const ContactFormPopup = ({ isOpen, onClose }) => {
           onClick={onClose}
         >
           <motion.div
-            className="bg-white rounded-2xl p-6 sm:p-8 md:p-[40px] w-full max-w-[90vw] sm:max-w-[500px] md:max-w-[578px] relative max-h-[90vh] overflow-y-auto"
+            className="bg-white rounded-2xl p-6 sm:p-8 md:p-[40px] w-full max-w-[90vw] sm:max-w-[500px] md:max-w-[578px] relative max-h-[90vh] overflow-y-auto scrollbar-hide md:modal-scrollbar-hide"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -94,10 +94,9 @@ const ContactFormPopup = ({ isOpen, onClose }) => {
             >
               <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-10 sm:h-10">
                 <rect width="40" height="40" fill="white" fill-opacity="0.2" />
-                <path d="M26 14L14 26" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M14 14L26 26" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M26 14L14 26" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M14 14L26 26" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-
             </button>
 
             {/* Header */}
@@ -123,7 +122,7 @@ const ContactFormPopup = ({ isOpen, onClose }) => {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full min-h-12 sm:min-h-14 md:min-h-16 px-4 sm:px-5 py-4 sm:py-5 md:py-6 border border-gray-200 rounded-xl font-magnetik text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all placeholder:text-xs sm:placeholder:text-sm placeholder:font-semibold placeholder:leading-none placeholder:text-official-text/40 placeholder:uppercase placeholder:font-magnetik"
+                  className="w-full min-h-12 sm:min-h-14 md:min-h-16 px-4 sm:px-5 py-4 sm:py-5 md:py-5 border border-gray-200 rounded-xl font-magnetik text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all placeholder:text-xs sm:placeholder:text-sm placeholder:font-semibold placeholder:leading-none placeholder:text-official-text/40 placeholder:uppercase placeholder:font-magnetik"
                 />
               </div>
 
@@ -136,7 +135,7 @@ const ContactFormPopup = ({ isOpen, onClose }) => {
                   value={formData.mobile}
                   onChange={handleInputChange}
                   required
-                  className="w-full min-h-12 sm:min-h-14 md:min-h-16 px-4 sm:px-5 py-4 sm:py-5 md:py-6 border border-gray-200 rounded-xl font-magnetik text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all placeholder:text-xs sm:placeholder:text-sm placeholder:font-semibold placeholder:leading-none placeholder:text-official-text/40 placeholder:uppercase placeholder:font-magnetik"
+                  className="w-full min-h-12 sm:min-h-14 md:min-h-16 px-4 sm:px-5 py-4 sm:py-5 md:py-5 border border-gray-200 rounded-xl font-magnetik text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all placeholder:text-xs sm:placeholder:text-sm placeholder:font-semibold placeholder:leading-none placeholder:text-official-text/40 placeholder:uppercase placeholder:font-magnetik"
                 />
               </div>
 
@@ -149,7 +148,7 @@ const ContactFormPopup = ({ isOpen, onClose }) => {
                   value={formData.pincode}
                   onChange={handleInputChange}
                   required
-                  className="w-full min-h-12 sm:min-h-14 md:min-h-16 px-4 sm:px-5 py-4 sm:py-5 md:py-6 border border-gray-200 rounded-xl font-magnetik text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all placeholder:text-xs sm:placeholder:text-sm placeholder:font-semibold placeholder:leading-none placeholder:text-official-text/40 placeholder:uppercase placeholder:font-magnetik"
+                  className="w-full min-h-12 sm:min-h-14 md:min-h-16 px-4 sm:px-5 py-4 sm:py-5 md:py-5 border border-gray-200 rounded-xl font-magnetik text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all placeholder:text-xs sm:placeholder:text-sm placeholder:font-semibold placeholder:leading-none placeholder:text-official-text/40 placeholder:uppercase placeholder:font-magnetik"
                 />
               </div>
 
@@ -160,7 +159,7 @@ const ContactFormPopup = ({ isOpen, onClose }) => {
                   value={formData.category}
                   onChange={handleInputChange}
                   required
-                  className="w-full min-h-12 sm:min-h-14 md:min-h-16 px-4 sm:px-5 py-4 sm:py-5 md:py-6 pr-12 sm:pr-16 border border-gray-200 rounded-xl font-magnetik text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all placeholder:text-xs sm:placeholder:text-sm placeholder:font-semibold placeholder:leading-none placeholder:text-official-text/40 placeholder:uppercase placeholder:font-magnetik appearance-none bg-white text-official-text"
+                  className="w-full min-h-12 sm:min-h-14 md:min-h-16 px-4 sm:px-5 py-4 sm:py-5 md:py-5 pr-12 sm:pr-16 border border-gray-200 rounded-xl font-magnetik text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all placeholder:text-xs sm:placeholder:text-sm placeholder:font-semibold placeholder:leading-none placeholder:text-official-text/40 placeholder:uppercase placeholder:font-magnetik appearance-none bg-white text-official-text"
                 >
                   <option value="" disabled className="text-official-text/40 uppercase font-semibold">APPLIANCE CATEGORY</option>
                   {applianceCategories.map((category) => (

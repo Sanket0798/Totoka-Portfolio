@@ -123,7 +123,7 @@ export const MobileNav = ({
         width: visible ? "90%" : "100%",
         paddingRight: visible ? "12px" : "0px",
         paddingLeft: visible ? "12px" : "0px",
-        borderRadius: visible ? "4px" : "2rem",
+        borderRadius: visible ? "12px" : "0",
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -132,8 +132,8 @@ export const MobileNav = ({
         damping: 50,
       }}
       className={cn(
-        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        "relative z-40 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
+        visible && "bg-white/10 dark:bg-neutral-950/80",
         className
       )}>
       {children}
@@ -163,14 +163,53 @@ export const MobileNavMenu = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0, x: "100%" }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: "100%" }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950",
+            "fixed inset-0 z-[9999] flex h-screen w-screen flex-col bg-white dark:bg-neutral-950",
             className
-          )}>
-          {children}
+          )}
+          style={{ 
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            transform: 'none !important',
+            zIndex: 9999
+          }}
+        >
+          {/* Close button */}
+          <div className="flex justify-end p-6">
+            <button
+              onClick={onClose}
+              className=""
+            >
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="8" fill="white" fill-opacity="0.2" />
+                <path d="M26 14L14 26" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M14 14L26 26" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+
+            </button>
+          </div>
+
+          {/* Content container */}
+          <div className="flex flex-col h-full px-6 relative">
+            {/* Navigation items */}
+            <div className="flex flex-col mt-2 font-grotesk font-medium text-2xl gap-y-2">
+              {children}
+            </div>
+
+            {/* Logo at bottom - absolutely positioned to touch the frame */}
+            <div className="absolute -bottom-14 left-0 right-0 flex justify-center">
+              <span className="text-[126px] font-grotesk font-bold text-official-text dark:text-white">
+                totoko
+              </span>
+            </div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

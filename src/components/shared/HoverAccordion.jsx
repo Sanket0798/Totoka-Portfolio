@@ -282,7 +282,7 @@ const HoverAccordion = () => {
                     {/* Button (for all items) */}
                     {item.buttonText && (
                       <motion.button
-                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                        // initial={{ opacity: 0, y: 20, scale: 0.9 }}
                         animate={{
                           opacity: hoveredIndex === index ? 1 : 0,
                           y: hoveredIndex === index ? 0 : 20,
@@ -294,7 +294,7 @@ const HoverAccordion = () => {
                           ease: [0.23, 1, 0.32, 1]
                         }}
                         whileHover={{
-                          scale: 1.02,
+                          // scale: 1.02,
                           transition: { duration: 0.2 }
                         }}
                         whileTap={{ scale: 0.98 }}

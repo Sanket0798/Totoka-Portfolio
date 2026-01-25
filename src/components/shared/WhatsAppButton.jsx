@@ -82,7 +82,7 @@ const WhatsAppButton = () => {
                                 boxShadow: '0 8px 25px rgba(47, 93, 80, 0.3)'
                             }}
                             whileTap={{ scale: 0.98 }}
-                            className="w-full bg-[#2F5D50] hover:bg-[#1e4a3d] text-white rounded-xl h-14 transition-all duration-300 flex items-center justify-center font-bold text-lg font-magnetik tracking-wide shadow-green-pill"
+                            className="w-full bg-[#2F5D50] hover:bg-[#1e4a3d] text-white rounded-xl h-14 transition-all duration-300 flex items-center justify-center font-bold text-sm font-magnetik tracking-wide shadow-green-pill"
                             aria-label="Get Started - Contact us on WhatsApp"
                         >
                             GET STARTED
