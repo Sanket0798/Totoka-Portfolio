@@ -64,16 +64,18 @@ const HoverAccordion = () => {
 
               {/* Mobile Spinning Badge */}
               <div className="flex-shrink-0 ml-4">
-                <div className="relative w-[80px] h-[80px]">
-                  <SpinningText
-                    duration={20}
-                    radius={6}
-                    className="w-full h-full text-xs font-medium text-black"
-                  >
-                    CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT
-                  </SpinningText>
+                <div className="relative w-[89px] h-[89px]">
+                  <div className="w-full h-full text-xs font-medium relative">
+                    <SpinningText
+                      duration={20}
+                      radius={6}
+                      className="w-full h-full text-black [&>span:nth-child(15)]:text-[#FF5B04] [&>span:nth-child(15)]:font-bold [&>span:nth-child(29)]:text-[#FF5B04] [&>span:nth-child(29)]:font-bold"
+                    >
+                      CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT
+                    </SpinningText>
+                  </div>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-[#BAAB96]/10 w-12 h-12 flex items-center justify-center rounded-full">
+                    <div className="bg-[#BAAB96]/10 w-14 h-14 flex items-center justify-center rounded-full">
                       <span className="text-xs font-bold tracking-snug text-[#2F5D50]">totoko</span>
                     </div>
                   </div>
@@ -87,42 +89,86 @@ const HoverAccordion = () => {
             {accordionItems.map((item, index) => (
               <motion.div
                 key={item.number}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={isIntersecting ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{
+                  duration: 0.8,
+                  delay: index * 0.2,
+                  ease: [0.23, 1, 0.32, 1]
+                }}
                 className="relative border-t border-[#BAB996]/20 pt-8"
               >
                 <div className="flex justify-between items-end">
                   {/* Left Content */}
                   <div className="">
-                    <div className="font-grotesk font-medium text-sm leading-none tracking-snug text-official-text/60 mb-2">
+                    {/* Process Number with fade-in */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isIntersecting ? { opacity: 1, x: 0 } : {}}
+                      transition={{
+                        duration: 0.6,
+                        delay: index * 0.2 + 0.3,
+                        ease: "easeOut"
+                      }}
+                      className="font-grotesk font-medium text-sm leading-none tracking-snug text-official-text/60 mb-2"
+                    >
                       {item.number}
-                    </div>
+                    </motion.div>
 
-                    <h3 className="font-grotesk font-bold text-2xl leading-tight tracking-snug text-official-text mb-4 max-w-[200px]">
+                    {/* Title with slide-in animation */}
+                    <motion.h3
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
+                      transition={{
+                        duration: 0.7,
+                        delay: index * 0.2 + 0.4,
+                        ease: [0.23, 1, 0.32, 1]
+                      }}
+                      className="font-grotesk font-bold text-2xl leading-tight tracking-snug text-official-text mb-4 max-w-[200px] w-full"
+                    >
                       {item.title}
-                    </h3>
+                    </motion.h3>
 
-                    <p className="font-magnetik font-medium text-sm leading-140 tracking-snug text-official-text/60 max-w-[240px]">
+                    {/* Description with fade-in */}
+                    <motion.p
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
+                      transition={{
+                        duration: 0.6,
+                        delay: index * 0.2 + 0.5,
+                        ease: "easeOut"
+                      }}
+                      className="font-magnetik font-medium text-sm leading-140 tracking-snug text-official-text/60 max-w-[240px] w-full"
+                    >
                       {item.description}
-                    </p>
+                    </motion.p>
                   </div>
 
-                  {/* Right Image */}
-                  <div className="flex-shrink-0 relative">
+                  {/* Right Image with scale and rotate animation */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+                    animate={isIntersecting ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+                    transition={{
+                      duration: 0.8,
+                      delay: index * 0.2 + 0.6,
+                      ease: [0.23, 1, 0.32, 1]
+                    }}
+                    className="flex-shrink-0 relative"
+                  >
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-[116px] h-[116px] object-cover rounded-xl"
+                      className="w-[116px] h-[116px] object-cover rounded-xl shadow-lg"
                       onError={(e) => {
                         e.target.src = '/placeholder.svg'
                       }}
                     />
-                  </div>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
           </div>
+
         </div>
 
         {/* Desktop Layout - Unchanged */}
@@ -157,13 +203,15 @@ const HoverAccordion = () => {
             >
               <div className="relative sm:hidden md:block md:w-[152px] md:h-[152px]">
                 {/* Spinning Text */}
-                <SpinningText
-                  duration={20}
-                  radius={8}
-                  className="w-full h-full text-sm font-medium text-black"
-                >
-                  CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT
-                </SpinningText>
+                <div className="w-full h-full text-sm font-medium relative">
+                  <SpinningText
+                    duration={20}
+                    radius={8}
+                    className="w-full h-full text-black [&>span:nth-child(15)]:text-[#FF5B04] [&>span:nth-child(15)]:font-bold [&>span:nth-child(29)]:text-[#FF5B04] [&>span:nth-child(29)]:font-bold"
+                  >
+                    CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT
+                  </SpinningText>
+                </div>
 
                 {/* Center Logo */}
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -183,7 +231,7 @@ const HoverAccordion = () => {
                 className="relative cursor-pointer overflow-hidden flex-1 border-l border-[#BAB996] border-opacity-50"
                 onMouseEnter={() => setHoveredIndex(index)}
                 animate={{
-                  flex: hoveredIndex === index ? '2' : '0.5',
+                  flex: hoveredIndex === index ? '1.5' : '0.5',
                 }}
                 transition={{
                   duration: 1.2,

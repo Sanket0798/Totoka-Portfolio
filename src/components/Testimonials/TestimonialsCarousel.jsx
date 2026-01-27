@@ -7,6 +7,7 @@ const TestimonialsCarousel = () => {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.3 })
   const [currentSlide, setCurrentSlide] = useState(0)
   const { openPopup } = useContactForm()
+  const [isDragging, setIsDragging] = useState(false)
 
   const testimonials = [
     {
@@ -72,11 +73,35 @@ const TestimonialsCarousel = () => {
   }
 
   const handleCardClick = (testimonial) => {
+    // Prevent click action if user was dragging
+    if (isDragging) return
+    
     // Find the original index of the clicked testimonial
     const targetIndex = testimonials.findIndex(t => t.id === testimonial.id)
     if (targetIndex !== -1) {
       setCurrentSlide(targetIndex)
     }
+  }
+
+  const handleDragEnd = (event, info) => {
+    const threshold = 50 // Minimum drag distance to trigger slide change
+    
+    if (Math.abs(info.offset.x) > threshold) {
+      if (info.offset.x > 0) {
+        // Dragged right, go to previous slide
+        prevSlide()
+      } else {
+        // Dragged left, go to next slide
+        nextSlide()
+      }
+    }
+    
+    // Reset dragging state after a short delay
+    setTimeout(() => setIsDragging(false), 100)
+  }
+
+  const handleDragStart = () => {
+    setIsDragging(true)
   }
 
   return (
@@ -130,8 +155,14 @@ const TestimonialsCarousel = () => {
                       opacity: isAdjacent ? 0.8 : 0.5,
                       transition: { duration: 0.2 }
                     } : {}}
+                    drag={isCenter ? "x" : false}
+                    dragConstraints={{ left: -100, right: 100 }}
+                    dragElastic={0.2}
+                    onDragStart={isCenter ? handleDragStart : undefined}
+                    onDragEnd={isCenter ? handleDragEnd : undefined}
                     onClick={() => !isCenter && handleCardClick(testimonial)}
-                    className={`absolute max-w-[260px] w-full md:max-w-[400px] md:w-full space-y-4 md:space-y-8 ${isCenter ? 'bg-transparent' : testimonial.bgColor} ${isCenter ? '' : 'shadow-lg'} ${!isCenter ? 'cursor-pointer' : ''}`}
+                    className={`absolute max-w-[260px] w-full md:max-w-[400px] md:w-full space-y-4 md:space-y-8 ${isCenter ? 'bg-transparent' : testimonial.bgColor} ${isCenter ? '' : 'shadow-lg'} ${!isCenter ? 'cursor-pointer' : ''} select-none ${isCenter ? 'touch-pan-y' : ''}`}
+                    style={{ pointerEvents: isDragging && !isCenter ? 'none' : 'auto' }}
                   >
                     {/* Header - Only show on center card */}
                     {isCenter && (
@@ -192,10 +223,10 @@ const TestimonialsCarousel = () => {
               })}
             </div>
 
-            {/* Navigation Arrows */}
+            {/* Navigation Arrows - Less prominent on mobile */}
             <button
               onClick={prevSlide}
-              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-white flex items-center justify-center transition-all duration-300 z-20"
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-white/80 md:bg-white flex items-center justify-center transition-all duration-300 z-20 md:opacity-100 opacity-60"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 18L9 12L15 6" stroke="#211A37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -205,7 +236,7 @@ const TestimonialsCarousel = () => {
 
             <button
               onClick={nextSlide}
-              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-white flex items-center justify-center transition-all duration-300 z-20"
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-white/80 md:bg-white flex items-center justify-center transition-all duration-300 z-20 md:opacity-100 opacity-60"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 18L15 12L9 6" stroke="#211A37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

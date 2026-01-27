@@ -12,28 +12,46 @@ const BuyingAppliancesSection = () => {
   const textRef = useRef(null)
 
   useEffect(() => {
-    if (textRef.current) {
-      // Create horizontal scroll animation
-      gsap.fromTo(textRef.current, 
-        {
-          x: '50vw', // Start from right side (reduced from 100vw)
-        },
-        {
-          x: '-50%', // Move to left (reduced distance)
-          ease: 'none',
-          scrollTrigger: {
-            trigger: textRef.current,
-            start: 'top bottom', // Start when top of element hits bottom of viewport
-            end: 'bottom+=200% top', // Extended end point for slower animation
-            scrub: 3, // Increased scrub value for slower, smoother animation
-            invalidateOnRefresh: true
+    const createAnimation = () => {
+      if (textRef.current) {
+        // Kill existing animations
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+        
+        const isMobile = window.innerWidth <= 768
+        
+        // Create horizontal scroll animation with mobile-specific settings
+        gsap.fromTo(textRef.current, 
+          {
+            x: isMobile ? '100vw' : '50vw', // Mobile: start completely off-screen to the right
+          },
+          {
+            x: '-50%', // Move to left
+            ease: 'none',
+            scrollTrigger: {
+              trigger: textRef.current,
+              start: isMobile ? 'top 50%' : 'top bottom', // Mobile: start only when section is centered in viewport
+              end: isMobile ? 'bottom+=50% top' : 'bottom+=200% top', // Mobile: much shorter animation duration
+              scrub: isMobile ? 2 : 3, // Mobile: slower, more controlled scrub
+              invalidateOnRefresh: true,
+            }
           }
-        }
-      )
+        )
+      }
     }
+
+    // Create initial animation
+    createAnimation()
+
+    // Handle window resize
+    const handleResize = () => {
+      createAnimation()
+    }
+
+    window.addEventListener('resize', handleResize)
 
     // Cleanup
     return () => {
+      window.removeEventListener('resize', handleResize)
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
     }
   }, [])

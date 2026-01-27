@@ -29,13 +29,13 @@ const Hero = () => {
         <div className="hidden md:block absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none"></div>
         
         {/* Mobile fade overlay - Adjusted for mobile banner */}
-        <div className="block md:hidden absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white via-white/70 to-transparent pointer-events-none"></div>
+        <div className="block md:hidden absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none"></div>
         
         {/* Content Overlay */}
-        <div className="absolute inset-0 flex items-start justify-center pt-12 md:pt-20">
+        <div className="absolute inset-0 flex items-start justify-center pt-8 md:pt-20">
           <div ref={ref} className="container-max relative z-10">
         {/* Hero Content */}
-        <div className="flex flex-col items-center justify-start pt-[176px] md:pt-8 section-padding px-6 md:px-0">
+        <div className="flex flex-col items-center justify-start pt-20 sm:pt-20 md:pt-8 section-padding px-6 md:px-0">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
