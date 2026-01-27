@@ -57,7 +57,7 @@ const HoverAccordion = () => {
                 <h2 className="text-4xl font-grotesk font-bold leading-none tracking-snug text-official-text mb-4">
                   How can we help you
                 </h2>
-                <p className="text-sm leading-140 font-medium font-magnetik text-official-text tracking-normal">
+                <p className="text-sm pr-4 leading-140 font-medium font-magnetik text-official-text tracking-normal">
                   From understanding your needs to helping you decide, Totoko offers a calm, personalised experience with expert support throughout.
                 </p>
               </div>
