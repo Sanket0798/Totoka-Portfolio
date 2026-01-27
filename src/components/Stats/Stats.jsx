@@ -155,9 +155,9 @@ const Stats = () => {
                 <SpinningText
                   duration={20}
                   radius={8}
-                  className="w-full h-full text-sm font-medium text-gray-800"
+                  className="w-full h-full text-sm font-medium text-black [&>span:nth-child(15)]:text-[#FF5B04] [&>span:nth-child(15)]:font-bold [&>span:nth-child(29)]:text-[#FF5B04] [&>span:nth-child(29)]:font-bold [&>span:nth-child(46)]:text-[#FF5B04] [&>span:nth-child(46)]:font-bold"
                 >
-                  CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT
+                  CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT +
                 </SpinningText>
 
                 {/* Center Logo */}

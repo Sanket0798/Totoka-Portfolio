@@ -69,9 +69,9 @@ const HoverAccordion = () => {
                     <SpinningText
                       duration={20}
                       radius={6}
-                      className="w-full h-full text-black [&>span:nth-child(15)]:text-[#FF5B04] [&>span:nth-child(15)]:font-bold [&>span:nth-child(29)]:text-[#FF5B04] [&>span:nth-child(29)]:font-bold"
+                      className="w-full h-full text-black [&>span:nth-child(15)]:text-[#FF5B04] [&>span:nth-child(15)]:font-bold [&>span:nth-child(29)]:text-[#FF5B04] [&>span:nth-child(29)]:font-bold [&>span:nth-child(46)]:text-[#FF5B04] [&>span:nth-child(46)]:font-bold"
                     >
-                      CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT
+                      CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT +
                     </SpinningText>
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -89,11 +89,11 @@ const HoverAccordion = () => {
             {accordionItems.map((item, index) => (
               <motion.div
                 key={item.number}
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                initial={{ opacity: 0, y: 80, scale: 0.9 }}
                 animate={isIntersecting ? { opacity: 1, y: 0, scale: 1 } : {}}
                 transition={{
                   duration: 0.8,
-                  delay: index * 0.2,
+                  delay: index * 0.3, // Card 01: 0ms, Card 02: 300ms, Card 03: 600ms, Card 04: 900ms
                   ease: [0.23, 1, 0.32, 1]
                 }}
                 className="relative border-t border-[#BAB996]/20 pt-8"
@@ -103,11 +103,11 @@ const HoverAccordion = () => {
                   <div className="">
                     {/* Process Number with fade-in */}
                     <motion.div
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -30 }}
                       animate={isIntersecting ? { opacity: 1, x: 0 } : {}}
                       transition={{
                         duration: 0.6,
-                        delay: index * 0.2 + 0.3,
+                        delay: index * 0.3 + 0.2, // Appears after card starts animating
                         ease: "easeOut"
                       }}
                       className="font-grotesk font-medium text-sm leading-none tracking-snug text-official-text/60 mb-2"
@@ -117,11 +117,11 @@ const HoverAccordion = () => {
 
                     {/* Title with slide-in animation */}
                     <motion.h3
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 30 }}
                       animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
                       transition={{
                         duration: 0.7,
-                        delay: index * 0.2 + 0.4,
+                        delay: index * 0.3 + 0.4, // Appears after number
                         ease: [0.23, 1, 0.32, 1]
                       }}
                       className="font-grotesk font-bold text-2xl leading-tight tracking-snug text-official-text mb-4 max-w-[200px] w-full"
@@ -131,11 +131,11 @@ const HoverAccordion = () => {
 
                     {/* Description with fade-in */}
                     <motion.p
-                      initial={{ opacity: 0, y: 15 }}
+                      initial={{ opacity: 0, y: 20 }}
                       animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
                       transition={{
                         duration: 0.6,
-                        delay: index * 0.2 + 0.5,
+                        delay: index * 0.3 + 0.6, // Appears after title
                         ease: "easeOut"
                       }}
                       className="font-magnetik font-medium text-sm leading-140 tracking-snug text-official-text/60 max-w-[240px] w-full"
@@ -146,11 +146,11 @@ const HoverAccordion = () => {
 
                   {/* Right Image with scale and rotate animation */}
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+                    initial={{ opacity: 0, scale: 0.7, rotate: -10 }}
                     animate={isIntersecting ? { opacity: 1, scale: 1, rotate: 0 } : {}}
                     transition={{
                       duration: 0.8,
-                      delay: index * 0.2 + 0.6,
+                      delay: index * 0.3 + 0.8, // Appears after description
                       ease: [0.23, 1, 0.32, 1]
                     }}
                     className="flex-shrink-0 relative"
@@ -207,9 +207,9 @@ const HoverAccordion = () => {
                   <SpinningText
                     duration={20}
                     radius={8}
-                    className="w-full h-full text-black [&>span:nth-child(15)]:text-[#FF5B04] [&>span:nth-child(15)]:font-bold [&>span:nth-child(29)]:text-[#FF5B04] [&>span:nth-child(29)]:font-bold"
+                    className="w-full h-full text-black [&>span:nth-child(15)]:text-[#FF5B04] [&>span:nth-child(15)]:font-bold [&>span:nth-child(29)]:text-[#FF5B04] [&>span:nth-child(29)]:font-bold [&>span:nth-child(46)]:text-[#FF5B04] [&>span:nth-child(46)]:font-bold"
                   >
-                    CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT
+                    CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT +
                   </SpinningText>
                 </div>
 
