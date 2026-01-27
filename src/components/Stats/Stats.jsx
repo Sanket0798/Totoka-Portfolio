@@ -154,7 +154,7 @@ const Stats = () => {
                 {/* Spinning Text */}
                 <SpinningText
                   duration={20}
-                  radius={8}
+                  radius={10}
                   className="w-full h-full text-sm font-medium text-black [&>span:nth-child(15)]:text-[#FF5B04] [&>span:nth-child(15)]:font-bold [&>span:nth-child(29)]:text-[#FF5B04] [&>span:nth-child(29)]:font-bold [&>span:nth-child(46)]:text-[#FF5B04] [&>span:nth-child(46)]:font-bold"
                 >
                   CHOOSE BETTER + PAY SMARTER + EXPERT SUPPORT +
@@ -162,8 +162,8 @@ const Stats = () => {
 
                 {/* Center Logo */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-[#BAAB96]/10 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full">
-                    <span className="text-sm md:text-base font-bold tracking-snug text-[#2F5D50]">totoko</span>
+                  <div className="bg-[#BAAB96]/10 w-16 h-16 md:w-28 md:h-28 flex items-center justify-center rounded-full">
+                    <span className="text-sm md:text-lg font-bold tracking-snug text-[#2F5D50]">totoko</span>
                   </div>
                 </div>
               </div>
