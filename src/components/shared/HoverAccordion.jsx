@@ -6,7 +6,7 @@ import SpinningText from '../ui/spinning-text'
 
 const HoverAccordion = () => {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.3 })
-  const [hoveredIndex, setHoveredIndex] = useState(0) // Default to first item expanded
+  const [hoveredIndex, setHoveredIndex] = useState(0) 
   const { openPopup } = useContactForm()
 
   const accordionItems = [
@@ -93,7 +93,7 @@ const HoverAccordion = () => {
                 animate={isIntersecting ? { opacity: 1, y: 0, scale: 1 } : {}}
                 transition={{
                   duration: 0.8,
-                  delay: index * 0.3, // Card 01: 0ms, Card 02: 300ms, Card 03: 600ms, Card 04: 900ms
+                  delay: index * 0.3,
                   ease: [0.23, 1, 0.32, 1]
                 }}
                 className="relative border-t border-[#BAB996]/20 pt-8"
@@ -107,7 +107,7 @@ const HoverAccordion = () => {
                       animate={isIntersecting ? { opacity: 1, x: 0 } : {}}
                       transition={{
                         duration: 0.6,
-                        delay: index * 0.3 + 0.2, // Appears after card starts animating
+                        delay: index * 0.3 + 0.2, 
                         ease: "easeOut"
                       }}
                       className="font-grotesk font-medium text-sm leading-none tracking-snug text-official-text/60 mb-2"
@@ -121,7 +121,7 @@ const HoverAccordion = () => {
                       animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
                       transition={{
                         duration: 0.7,
-                        delay: index * 0.3 + 0.4, // Appears after number
+                        delay: index * 0.3 + 0.4, 
                         ease: [0.23, 1, 0.32, 1]
                       }}
                       className="font-grotesk font-bold text-2xl leading-tight tracking-snug text-official-text mb-4 max-w-[200px] w-full"
@@ -135,7 +135,7 @@ const HoverAccordion = () => {
                       animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
                       transition={{
                         duration: 0.6,
-                        delay: index * 0.3 + 0.6, // Appears after title
+                        delay: index * 0.3 + 0.6, 
                         ease: "easeOut"
                       }}
                       className="font-magnetik font-medium text-sm leading-140 tracking-snug text-official-text/60 max-w-[240px] w-full"
@@ -150,7 +150,7 @@ const HoverAccordion = () => {
                     animate={isIntersecting ? { opacity: 1, scale: 1, rotate: 0 } : {}}
                     transition={{
                       duration: 0.8,
-                      delay: index * 0.3 + 0.8, // Appears after description
+                      delay: index * 0.3 + 0.8, 
                       ease: [0.23, 1, 0.32, 1]
                     }}
                     className="flex-shrink-0 relative"
@@ -235,7 +235,7 @@ const HoverAccordion = () => {
                 }}
                 transition={{
                   duration: 1.2,
-                  ease: [0.23, 1, 0.32, 1], // Custom cubic-bezier for smooth drawer effect
+                  ease: [0.23, 1, 0.32, 1], 
                 }}
               >
                 {/* Content */}
@@ -329,8 +329,7 @@ const HoverAccordion = () => {
 
                     {/* Button (for all items) */}
                     {item.buttonText && (
-                      <motion.button
-                        // initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                      <motion.button                    
                         animate={{
                           opacity: hoveredIndex === index ? 1 : 0,
                           y: hoveredIndex === index ? 0 : 20,
@@ -342,7 +341,6 @@ const HoverAccordion = () => {
                           ease: [0.23, 1, 0.32, 1]
                         }}
                         whileHover={{
-                          // scale: 1.02,
                           transition: { duration: 0.2 }
                         }}
                         whileTap={{ scale: 0.98 }}
